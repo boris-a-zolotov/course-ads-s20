@@ -1,0 +1,93 @@
+%%%%%%%%%%%%%%%%%%%%
+%% Basic needs of a LaTeX-er
+%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[margin=1.15in,bottom=1.1in]{geometry}
+\RequirePackage{amsmath,amssymb,amsthm,mathtools}
+\RequirePackage{graphicx,caption,subcaption,makecell}
+\RequirePackage{titletoc,tocloft,hyperref,fancyhdr}
+\RequirePackage{enumerate,enumitem,indentfirst,euscript}
+\RequirePackage{alphalph,algorithm,algpseudocode}
+\RequirePackage[numbers,sort]{natbib}
+
+% \RequirePackage[english,russian]{babel}
+\RequirePackage[utf8x]{inputenc} \RequirePackage[russian]{babel}
+
+\RequirePackage{tikz,tkz-euclide}
+\usetikzlibrary{arrows,backgrounds,patterns,matrix,
+	shapes,fit,calc,shadows,plotmarks,
+	intersections,through}
+\usetkzobj{all}
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Intimately personal
+%%%%%%%%%%%%%%%%%%%%
+
+\def\scolon{\rlap{,}\raisebox{0.8ex}{,} }
+\linespread{1.12} \def\ms{\medskip\par}
+\def\ll{\left(} \def\rr{\right)}
+\def\lag{\left\langle} \def\rag{\right\rangle}
+\captionsetup[figure]{width=12.5cm}
+\def\l{\lambda}
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Pagestyle
+%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0cm}
+\parindent=0.33in \footskip=0.35in \parskip=0.25cm
+
+\fancyhead[CO,CE,LO,LE,RO,RE]{ }
+\fancyfoot[LO,LE,RO,RE]{ }
+\fancyfoot[CO,CE]{{\rm\thepage}}
+
+\renewcommand{\labelenumi}{\arabic{enumi}) }
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Standing still mathematical
+%%%%%%%%%%%%%%%%%%%%
+
+\def\bq{\mathbb Q}
+\def\br{\mathbb R}
+\def\bc{\mathbb C}
+\def\bn{\mathbb N}
+\def\bz{\mathbb Z}
+
+\def\matrz{\text{\bf 0}}
+\DeclareMathOperator{\dist}{dist}
+
+\def\l{\lambda}
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Theorems and statements
+%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{exmpl}{Example}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{stat}[theorem]{Statement}
+\newtheorem{prop}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{task}{Problem}
+
+\newtheorem*{remark}{Remark}
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Later additions
+%%%%%%%%%%%%%%%%%%%%
+
+\def\Lra{\Longrightarrow}
+\def\ve{\varepsilon}
+\def\vfi{\varphi}
+
+\def\newthm#1{\begin{theorem} #1 \end{theorem}}
+\def\newdefn#1{\begin{definition} #1 \end{definition}}
