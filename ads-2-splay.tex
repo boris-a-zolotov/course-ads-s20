@@ -1,7 +1,44 @@
 \section{Splay tree}
 {\it Оригинальная статья: \cite{tarjan1985splay}}
 
-В этом дереве мы каждый раз, когда захотим что-то сделать с вершиной, будем поднимать ее до корня (операция splay). 
+\subsection{Общая структура дерева}
+
+В этом дереве мы каждый раз, когда захотим что-то сделать с вершиной, будем поднимать ее до корня (операция splay). В самом дереве в этот раз мы можем не хранить ничего, кроме корня root. Но часто хочется уметь быстро считать размер дерева, для этого можно хранить отдельную переменную size для всего дерева.
+
+\begin{algorithmic}[0]
+	\algrenewcommand\algorithmicprocedure{\textbf{structure}}
+	\Procedure {tree}{}
+        \State root
+        \State size \Comment{optional}
+	\EndProcedure
+	\Procedure {node}{}
+		\State left, right
+		\State key
+	\EndProcedure
+\end{algorithmic}
+
+Выразим сначала операции insert и erase через операцию splay, а потом будем разбираться со splay. Для erase нам понадобится операция splay\_front(node). Эта операция делает splay для наименьшего ключа в поддереве.
+
+\begin{algorithmic}[1]
+	\Procedure {insert}{x}
+		\State standard\_insert(x)
+		\State splay(x)
+    \EndProcedure
+    
+	\Procedure {get}{x}
+		\State splay(x)
+    \EndProcedure
+    
+	\Procedure {erase}{x}
+		\State splay(x)
+        \State splay\_front(root.right)
+        \State standard\_erase(x)
+	\EndProcedure
+\end{algorithmic}
+
+Два вызова функции splay при удалении нужны для того, чтобы правый сын корневой вершины не имел левого сына (потому что он содержит наименьший ключ в своем поддереве) и операция standard\_erase(x) работала за $\BigO(1)$ (потому что она просто возьмет этого правого сына и поставит на место удаленного корня). Еще стоит отметить, что даже при простом доступе к вершине мы вызываем операцию splay, это нужно потому что наше дерево может иметь довольно большую глубину во время работы, а оценка у нас будет только на амортизированную сложность операции splay.
+
+\subsection{Splay}
 
 \begin{figure}
     \centering
