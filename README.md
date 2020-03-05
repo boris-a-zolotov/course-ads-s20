@@ -6,4 +6,4 @@
 
 [Реализации некоторых алгоритмов из курса.](code.pdf)
 
-https://users.math-cs.spbu.ru/~arseneva/course-ads-s20.html
+[Страница курса.](https://users.math-cs.spbu.ru/~arseneva/course-ads-s20.html)
