@@ -70,16 +70,15 @@
 %% Pagestyle
 %%%%%%%%%%%%%%%%%%%%
 
+\parindent=0.33in \footskip=0.35in \parskip=0.12cm
+\renewcommand{\labelenumi}{\arabic{enumi}) }
+
 \begin{comment}
 	\pagestyle{fancy}
 	\renewcommand{\headrulewidth}{0cm}
-	\parindent=0.33in \footskip=0.35in \parskip=0.25cm
-	
 	\fancyhead[CO,CE,LO,LE,RO,RE]{ }
 	\fancyfoot[LO,LE,RO,RE]{ }
 	\fancyfoot[CO,CE]{{\rm\thepage}}
-	
-	\renewcommand{\labelenumi}{\arabic{enumi}) }		
 \end{comment}
 
 
@@ -96,6 +95,7 @@
 \def\matrz{\text{\bf 0}}
 \DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\size}{size}
+\DeclareMathOperator{\opt}{OPT}
 
 \def\l{\lambda}
 
@@ -147,3 +147,16 @@
 \newcommand{\SmallO}{o}
 
 \newcommand{\eps}{\varepsilon}
+\newcommand{\arbs}{arborally satisfiable\xspace}
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Graphics
+%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{rectblue}{RGB}{15,95,185}
+\newcommand{\defrect}[4]{
+	\filldraw[draw=black,fill=rectblue,fill opacity=0.35] #1 rectangle #2;
+	\filldraw[draw=black,fill=black] #1 circle[radius=0.8mm] #2 circle[radius=0.8mm];
+	\draw #1 node[left]{#3} #2 node[right]{#4};
+}
