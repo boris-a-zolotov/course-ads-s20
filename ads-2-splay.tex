@@ -44,7 +44,6 @@
 
 \begin{figure}
     \centering
-    \caption{Zig}\label{Zig}
     \begin{forest}
         [, phantom, for children={fit=band}, s sep'+=60pt
             [p,circle,draw
@@ -63,14 +62,14 @@
             ]
         ]
         \draw[-latex,very thick,shorten <=5mm,shorten >=5mm] (left) to (right);
-    \end{forest}    
+    \end{forest}
+    \caption{Zig}\label{Zig} 
 \end{figure}
 
 Итак, нам надо научиться понимать вершину в корень. Это делается при помощи нескольких видов вращений дерева. Все вращения в дальнейшем будем рассматривать с точностью до симметрии. Простейшее вращение называется zig~(см.~рис.~\ref{Zig}). Легко видеть, что это вращение поднимает вершину $x$ на один уровень выше. При помощи одного этого вращения можно поднять вершину в корень, но для амортизационного анализа нам этого не хватит, поэтому мы будем делать сразу двойные вращения.
 
 \begin{figure}
     \centering
-    \caption{Zig-zig}\label{ZigZig}
     \begin{forest}
         [, phantom, for children={fit=band}, s sep'+=60pt
             [g,circle,draw
@@ -95,11 +94,12 @@
             ]
         ]
         \draw[-latex,very thick,shorten <=5mm,shorten >=5mm] (left) to (right);
-    \end{forest}    
+    \end{forest}
+    \caption{Zig-zig}\label{ZigZig} 
 \end{figure}
+
 \begin{figure}
     \centering
-    \caption{Zig-zag}\label{ZigZag}
     \begin{forest}
         [, phantom, for children={fit=band}, s sep'+=60pt
             [g,circle,draw
@@ -124,7 +124,8 @@
             ]
         ]
         \draw[-latex,very thick,shorten <=5mm,shorten >=5mm] (left) to (right);
-    \end{forest}    
+    \end{forest}
+    \caption{Zig-zag}\label{ZigZag}    
 \end{figure}
 
 Двойные вращения бывают двух видов: zig-zig (рис.~\ref{ZigZig}) и zig-zag (рис.~\ref{ZigZag}). Оба эти вращения реализуются при помощи пары вращений zig, но для того, чтобы выразить zig-zig, надо сначала выполнить zig от вершины $p$, и только потом от $x$. Zig-zag при этом выражается как два вызова zig от $x$. Стоит отметить, что при splay мы не сможем выполнить двойное вращение, если интересующая нас вершина непосредственный сын корня, тогда мы должны сделать zig и не забыть его посчитать при анализе (но он может быть только один).
