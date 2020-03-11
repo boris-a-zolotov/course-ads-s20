@@ -25,8 +25,7 @@
 
 \RequirePackage{tikz,tkz-euclide}
 \usetikzlibrary{arrows,backgrounds,patterns,matrix,
-	shapes,fit,calc,shadows,plotmarks,
-	intersections,through}
+	shapes,fit,calc,shadows,plotmarks,snakes}
 \usetkzobj{all}
 
 
@@ -96,6 +95,7 @@
 \DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\size}{size}
 \DeclareMathOperator{\opt}{OPT}
+\DeclareMathOperator{\maxind}{MAX\,IND}
 
 \def\l{\lambda}
 
@@ -129,6 +129,8 @@
 
 \def\newthm#1{\begin{theorem} #1 \end{theorem}}
 \def\newdefn#1{\begin{definition} #1 \end{definition}}
+
+\def\tpl{«$+$»\xspace} \def\tmi{«$-$»\xspace}
 
 
 %%%%%%%%%%%%%%%%%%%%
