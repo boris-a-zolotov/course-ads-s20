@@ -1,0 +1,21 @@
+\begin{figure}[h] \centering
+\definecolor{specblue}{RGB}{100,15,190}
+\newcommand{\dts}{\draw[very thick,->,specblue]}
+\tikz[scale=1.12]{
+	\draw[->,thick] (-1.5,0) -- (5,0);
+	\draw[->,thick] (0,-1.5) -- (0,4.5);
+	\coordinate (s) at (2.5,3.25);
+	\defrect{(3.25,0.6)}{(s)}{ }{ }
+	\defrect{(2,1)}{(s)}{ }{ }
+	\defrect{(1.6,1.75)}{(s)}{ }{ }
+	\defrect{(3.75,2)}{(s)}{ }{ }
+	\defrect{(0.75,2.5)}{(s)}{ }{ }
+	\draw (s) -- (2.5,-1.25);
+	\dts (s) -- (0.75,2.5); \dts (0.75,2.5) -- (3.75,2);
+	\dts (3.75,2) -- (1.6,1.75); \dts (1.6,1.75) -- (2,1);
+	\dts (2,1) -- (3.25,0.6);
+	\draw (s) node[above]{$s \in P$};
+}
+\caption{Подсчёт числа пересечений с вертикальной прямой}
+\label{fig:vertInt}
+\end{figure}

@@ -1,0 +1,17 @@
+\newcommand{\rectStack}[2]{
+\begin{scope}[xshift=#1 cm]
+	\filldraw[draw=black,fill=black] (1.25,1.15)
+		circle[radius=0.8mm] node[right]{#2};
+	\defrect{(0,0)}{(1.75,0.75)}{ }{ }
+	\defrect{(0.25,0)}{(1.5,-0.75)}{ }{ }
+	\defrect{(1.25,-0.75)}{(0.5,-1.25)}{ }{ }
+	\defrect{(0.75,-1.25)}{(1,-1.75)}{ }{ }
+\end{scope}}
+
+\begin{figure}[h] \centering
+\tikz[scale=1.19]{
+	\rectStack{0}{$s_1$} \rectStack{3}{$s_2$} \rectStack{6}{$s_3$}
+}
+\caption{Набор попарно независимых прямоугольников}
+\label{fig:manyInd}
+\end{figure}
