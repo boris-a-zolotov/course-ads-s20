@@ -1,14 +1,14 @@
 \section{Динамизация структур данных}
 
 Пусть у нас есть задача поиска:
-$$Q:X\times2^D\to A,$$
+\[Q:X\times2^D\to A,\]
 где $A$ -- ответы, $D$ -- объекты, $X$ -- запросы.
 
 \subsection{}
 
 \begin{definition}
 Говорим, что задача поиска является decomposable, если функция $Q$ обладает следующим свойством:
-$$Q(x,D\cup D')=Q(x,D)\blacklozenge  Q(x,D'),$$
+\[Q(x,D\cup D')=Q(x,D)\blacklozenge  Q(x,D'),\]
 где $\blacklozenge$ означает, операцию, которая быстро считается.
 \end{definition}
 
@@ -76,7 +76,7 @@ $\quad$return $a$\\
 \end{tabular}
 
 
-Ясно, что на запрос мы потратим времени $$\sum_{i=0}^{l-1}Q(2^i)<l\cdot Q(n)=O(\log n)Q(n).$$
+Ясно, что на запрос мы потратим времени \[]\sum_{i=0}^{l-1}Q(2^i)<l\cdot Q(n)=O(\log n)Q(n).\]
 
 \begin{remark}
 Если $Q(n)$ -- большое, то есть $Q(n)>n^\varepsilon$ при каком-то $\varepsilon >0$, то время на запросе -- это $O(Q(n))$.
@@ -103,11 +103,11 @@ $\quad$$\quad$destroy $L_i$\\
 
 
 Мы хотим, чтоб цена за одну вставку была
-$$I'(n)=O(\log n )\frac{P(n)}{n}.$$
-$$I'(n)=O(\log n )\frac{P(n)}{n}=\sum_{i=0}^{\log n}\frac{P(2^i)}{2^i}.$$
+\[I'(n)=O(\log n )\frac{P(n)}{n}.\]
+\[I'(n)=O(\log n )\frac{P(n)}{n}=\sum_{i=0}^{\log n}\frac{P(2^i)}{2^i}.\]
 
 Ясно, что за $n$ вставок у нас получится
-$$\sum_{i=0}^{\log n}P\left(2^i\right)\frac{n}{2^i} =n \sum_{i=0}^{\log n}\frac{P(2^i)}{2^i} = O(\log n)P(n).$$
+\[\sum_{i=0}^{\log n}P\left(2^i\right)\frac{n}{2^i} =n \sum_{i=0}^{\log n}\frac{P(2^i)}{2^i} = O(\log n)P(n).\]
 Что и требовалось.
 
 \begin{remark}
@@ -219,7 +219,7 @@ $\quad$destroy $N_i$\\
 \begin{definition}
 Говорим, что задача поиска является invertible, если функция $Q$ обладает следующим свойством:
 Если $D=D_1\cup D_2$, то
-$$Q(x,D_1)=Q(x,D)-\blacklozenge Q(x,D_2),$$
+\[Q(x,D_1)=Q(x,D)-\blacklozenge Q(x,D_2),\]
 где $-\blacklozenge$ быстро считается.
 \end{definition}
 
@@ -299,7 +299,7 @@ $M:=M',I:=I',G:=G'$\\
 
 
 Ясно, что время в худшем случае будет каким надо, а именно,
-$$O\left(P(n)\frac{\log n}{n} \right).$$
+\[O\left(P(n)\frac{\log n}{n} \right).\]
 
 \subsection{}
 
