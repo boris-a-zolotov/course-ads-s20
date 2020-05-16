@@ -7,13 +7,13 @@
 \subsection{}
 
 \begin{definition}
-Говорим, что задача поиска является decomposable, если функция $Q$ обладает следующим свойством:
-\[Q(x,D\cup D')=Q(x,D)\blacklozenge  Q(x,D'),\]
-где $\blacklozenge$ означает, операцию, которая быстро считается.
+    Говорим, что задача поиска является decomposable, если функция $Q$ обладает следующим свойством:
+    \[Q(x,D\cup D')=Q(x,D)\blacklozenge  Q(x,D'),\]
+    где $\blacklozenge$ означает, операцию, которая быстро считается.
 \end{definition}
 
 \begin{exmpl}
-Пусть мы хотим в каком-то множестве точек узнавать ближайшего соседа от точки запроса. Ясно, что мы можем узнать ближайшего соседа в множестве $D$, ближайшего соседа в множестве $D'$ и взять из них того, что ближе.
+    Пусть мы хотим в каком-то множестве точек узнавать ближайшего соседа от точки запроса. Ясно, что мы можем узнать ближайшего соседа в множестве $D$, ближайшего соседа в множестве $D'$ и взять из них того, что ближе.
 \end{exmpl}
 
 Предположим, что у нас есть такая функция $Q$. Давайте сформулируем задачу:
@@ -27,19 +27,19 @@
 \end{itemize}
 
 \begin{task}
-Мы хотим построить структуру данных, которая обладает следующими свойствами:
-\begin{itemize}
-    \item Она занимает $S'(n)=O(S(n))$ памяти;
+    Мы хотим построить структуру данных, которая обладает следующими свойствами:
+    \begin{itemize}
+        \item Она занимает $S'(n)=O(S(n))$ памяти;
 
-    \item Она строится за $P'(n)=O(P(n))$;
+        \item Она строится за $P'(n)=O(P(n))$;
 
-    \item Она отвечает на вопрос за $Q'(n)=O(\log n\cdot Q(n))$;
+        \item Она отвечает на вопрос за $Q'(n)=O(\log n\cdot Q(n))$;
 
-    \item Вставка занимает $I'(n)=O\left(\log n\frac{P(n)}{n}\right)$.
+        \item Вставка занимает $I'(n)=O\left(\log n\frac{P(n)}{n}\right)$.
 
-\end{itemize}
+    \end{itemize}
 
-В данной задаче имеется ввиду амортизированное время для запроса и вставки.
+    В данной задаче имеется ввиду амортизированное время для запроса и вставки.
 \end{task}
 
 Итак, давайте строить. Разбиваем наши элементы на на логарифмическое количество уровней. Теперь у нас имеется $\log n $ уровней, которые называются $L_0,\ldots,L_l$: \begin{itemize}
@@ -60,43 +60,43 @@
 Запрос делаем следующим образом:
 
 \begin{tabular}{|p{4cm}|}
-\hline
-Query(x):
+    \hline
+    Query(x):
 
-$\quad$$a:=E$ (ответ на $\varnothing$)
+    $\quad$$a:=E$ (ответ на $\varnothing$)
 
-$\quad$for $i=0$ to $l$
+        $\quad$for $i=0$ to $l$
 
-$\quad$$\quad$if $L_i \ne \varnothing$
+    $\quad$$\quad$if $L_i \ne \varnothing$
 
-$\quad$$\quad$$\quad$$a:=a\blacklozenge Q(x,L_i)$
+    $\quad$$\quad$$\quad$$a:=a\blacklozenge Q(x,L_i)$
 
-$\quad$return $a$\\
-\hline
+    $\quad$return $a$ \\
+    \hline
 \end{tabular}
 
 
 Ясно, что на запрос мы потратим времени \[]\sum_{i=0}^{l-1}Q(2^i)<l\cdot Q(n)=O(\log n)Q(n).\]
 
 \begin{remark}
-Если $Q(n)$ -- большое, то есть $Q(n)>n^\varepsilon$ при каком-то $\varepsilon >0$, то время на запросе -- это $O(Q(n))$.
-\end{remark} 
+    Если $Q(n)$ -- большое, то есть $Q(n)>n^\varepsilon$ при каком-то $\varepsilon >0$, то время на запросе -- это $O(Q(n))$.
+\end{remark}
 
 Вставку делаем следующим образом:
 
 \begin{tabular}{|p{5cm}|}
-\hline
-Insert(x):
+    \hline
+    Insert(x):
 
-$\quad$Find $\min k: L_k=\varnothing$
+    $\quad$Find $\min k: L_k=\varnothing$
 
-$\quad$build $L_k:=\{x\}\cup \bigcup_{i<k} L_i$
+    $\quad$build $L_k:=\{x\}\cup \bigcup_{i<k} L_i$
 
-$\quad$for $i=0$ to $k-1$ 
+    $\quad$for $i=0$ to $k-1$
 
-$\quad$$\quad$destroy $L_i$\\
+    $\quad$$\quad$destroy $L_i$ \\
 
-\hline
+    \hline
 \end{tabular}
 
 Ясно, что build происходит за $P\left(2^k\right)$.
@@ -111,11 +111,11 @@ $\quad$$\quad$destroy $L_i$\\
 Что и требовалось.
 
 \begin{remark}
-Если $P(n)>n^{1+\varepsilon}$, где $\varepsilon>0$, то $I'(n)=O\left(\frac{P(n)}{n}\right)$.
+    Если $P(n)>n^{1+\varepsilon}$, где $\varepsilon>0$, то $I'(n)=O\left(\frac{P(n)}{n}\right)$.
 \end{remark}
 
 \begin{task}
-Мы хотим получить тот же результат, что и в Задаче 1, только время для запроса и вставку теперь не амортизированное, а в худшем случае.
+    Мы хотим получить тот же результат, что и в Задаче 1, только время для запроса и вставку теперь не амортизированное, а в худшем случае.
 \end{task}
 Теперь на каждом уровне у нас будут старые структуры и новые. То есть, на уровне $i$ будут находиться структуры $O_i^1,O_i^2,O_i^3,N_i$, снова в каждой из них $\varnothing$ или $2^i$ объектов. Также ещё мы хотим, чтоб выполнялось:
 \begin{itemize}
@@ -129,28 +129,28 @@ $\quad$$\quad$destroy $L_i$\\
 
 
 \begin{tabular}{|p{5cm}|}
-\hline
-Query(x):
+    \hline
+    Query(x):
 
-$\quad$$a_i=E$
+    $\quad$$a_i=E$
 
-$\quad$for $i=0$ to $l$
+    $\quad$for $i=0$ to $l$
 
-$\quad$$\quad$if $Q^1_i \ne \varnothing$
+    $\quad$$\quad$if $Q^1_i \ne \varnothing$
 
-$\quad$$\quad$$\quad$$a_i=a \blacklozenge Query(x,Q^1_i)$
+    $\quad$$\quad$$\quad$$a_i=a \blacklozenge Query(x,Q^1_i)$
 
-$\quad$$\quad$if $Q^2_i \ne \varnothing$
+    $\quad$$\quad$if $Q^2_i \ne \varnothing$
 
-$\quad$$\quad$$\quad$$a_i=a \blacklozenge Query(x,Q^2_i)$
+    $\quad$$\quad$$\quad$$a_i=a \blacklozenge Query(x,Q^2_i)$
 
-$\quad$$\quad$if $Q^3_i \ne \varnothing$
+    $\quad$$\quad$if $Q^3_i \ne \varnothing$
 
-$\quad$$\quad$$\quad$$a_i=a \blacklozenge Query(x,Q^3_i)$
+    $\quad$$\quad$$\quad$$a_i=a \blacklozenge Query(x,Q^3_i)$
 
-$\quad$return $a$\\
+    $\quad$return $a$ \\
 
-\hline
+    \hline
 \end{tabular}
 
 Очевидно, что время запроса у нас такое же.
@@ -158,52 +158,52 @@ $\quad$return $a$\\
 Вставку делаем следующим образом:
 
 \begin{tabular}{|p{9cm}|}
-\hline
-Insert(x):
+    \hline
+    Insert(x):
 
-$\quad$for $i=l \ldots 1$
+    $\quad$for $i=l \ldots 1$
 
-$\quad$$\quad$if $O^1_{i-1} \ne \varnothing$ and $O^2_{i-1} \ne \varnothing$
+    $\quad$$\quad$if $O^1_{i-1} \ne \varnothing$ and $O^2_{i-1} \ne \varnothing$
 
-$\quad$$\quad$$\quad$do $\frac{P(2^i)}{2^i}$ шагов построения $N_i(:=O^1_{i-1}\cup O_{i-1}^2)$
+    $\quad$$\quad$$\quad$do $\frac{P(2^i)}{2^i}$ шагов построения $N_i(:=O^1_{i-1}\cup O_{i-1}^2)$
 
-$\quad$$\quad$$\quad$if $N_i$ is complete
+    $\quad$$\quad$$\quad$if $N_i$ is complete
 
-$\quad$$\quad$$\quad$$\quad$destroy $O_{i-1}^1,O_{i-1}^2$
+            $\quad$$\quad$$\quad$$\quad$destroy $O_{i-1}^1,O_{i-1}^2$
 
-$\quad$$\quad$$\quad$$\quad$$O^1_{i-1}:=O_{i-1}^3$
+    $\quad$$\quad$$\quad$$\quad$$O^1_{i-1}:=O_{i-1}^3$
 
-$\quad$$\quad$$\quad$$\quad$destroy $O_{i-1}^3$
+    $\quad$$\quad$$\quad$$\quad$destroy $O_{i-1}^3$
 
 
-$\quad$$\quad$$\quad$$\quad$Update(i)
+    $\quad$$\quad$$\quad$$\quad$Update(i)
 
-$\quad$$\quad$$\quad$$N_0:=x$
+        $\quad$$\quad$$\quad$$N_0:=x$
 
-$\quad$$\quad$$\quad$$Update(0)$\\
+    $\quad$$\quad$$\quad$$Update(0)$ \\
 
-\hline
+    \hline
 \end{tabular}
 
 Что такое Update(i)?
 
 \begin{tabular}{|p{3cm}|}
-\hline
-Update(i):
+    \hline
+    Update(i):
 
-$\quad$if $O^1_i=\varnothing$
+    $\quad$if $O^1_i=\varnothing$
 
-$\quad$$\quad$$O^1_i:=N_i$
+    $\quad$$\quad$$O^1_i:=N_i$
 
-$\quad$else if $O_i^2 = \varnothing$
+    $\quad$else if $O_i^2 = \varnothing$
 
-$\quad$$\quad$$O_i^2:=N_i$
+    $\quad$$\quad$$O_i^2:=N_i$
 
-$\quad$else $O_i^3:=N_i$
+    $\quad$else $O_i^3:=N_i$
 
-$\quad$destroy $N_i$\\
+    $\quad$destroy $N_i$ \\
 
-\hline
+    \hline
 \end{tabular}
 
 
@@ -217,25 +217,25 @@ $\quad$destroy $N_i$\\
 
 \subsection{}
 \begin{definition}
-Говорим, что задача поиска является invertible, если функция $Q$ обладает следующим свойством:
-Если $D=D_1\cup D_2$, то
-\[Q(x,D_1)=Q(x,D)-\blacklozenge Q(x,D_2),\]
-где $-\blacklozenge$ быстро считается.
+    Говорим, что задача поиска является invertible, если функция $Q$ обладает следующим свойством:
+    Если $D=D_1\cup D_2$, то
+    \[Q(x,D_1)=Q(x,D)-\blacklozenge Q(x,D_2),\]
+    где $-\blacklozenge$ быстро считается.
 \end{definition}
 
 Предположим, что у нас есть такая функция $Q$. Давайте сформулируем задачу:
 
 \begin{task}
-Пусть у нас есть структура данных $M$, которая умеет вставлять и ещё другая структура данных $G$, в которую мы будем вставлять элемент, который хотим удалить из $M$. Хотим, чтоб амортизированное время удаления из $M$ равнялось $O\left(P(n)\frac{\log n}{n}\right)$.
+    Пусть у нас есть структура данных $M$, которая умеет вставлять и ещё другая структура данных $G$, в которую мы будем вставлять элемент, который хотим удалить из $M$. Хотим, чтоб амортизированное время удаления из $M$ равнялось $O\left(P(n)\frac{\log n}{n}\right)$.
 
 \end{task}
 
 \begin{tabular}{|p{5cm}|}
-\hline
-Query(x):
+    \hline
+    Query(x):
 
-$\quad$Return $Q(x,M)-\blacklozenge Q(x,G)$\\
-\hline
+    $\quad$Return $Q(x,M)-\blacklozenge Q(x,G)$ \\
+    \hline
 \end{tabular}
 
 
@@ -245,32 +245,32 @@ $\quad$Return $Q(x,M)-\blacklozenge Q(x,G)$\\
 $O\left(\frac{P(n)}{n}\right)+O\left(P(n)\frac{log n}{n}\right)$ (второе слагаемое -- это вставки в структуру $G$).
 
 \begin{tabular}{|p{5cm}|}
-\hline
+    \hline
 
-When $|G|>\frac{1}{2}|M|$
+    When $|G|>\frac{1}{2}|M|$
 
-$\quad$Build $M:=M\textbackslash G$
+    $\quad$Build $M:=M\textbackslash G$
 
-$\quad$$\quad$$G:=\varnothing$\\
+    $\quad$$\quad$$G:=\varnothing$ \\
 
-\hline
+    \hline
 \end{tabular}
 
 Также есть проблема, что глобальные перестроения могут помешать локальным, то есть для работы вставок мы тоже перестраиваем систему, и надо, чтоб нам хватило ресурсов для вставки, несмотря на то, что мы потратили что-то на удаление. Для борьбы с этим достаточно просто амортизированную стоимость удаления умножить на достаточно большую константу.
 
 
 \begin{task}
-Мы хотим получить тот же результат, что и в задаче 3, только время теперь не амортизированное, а в худшем случае.
+    Мы хотим получить тот же результат, что и в задаче 3, только время теперь не амортизированное, а в худшем случае.
 \end{task}
 
 Для решения Задачи 4 мы поддерживаем три структуры: $M,I,G$:
 
 \begin{tabular}{|p{8cm}|}
-\hline
-Query(x):
+    \hline
+    Query(x):
 
-$\quad$Return $Q(x)=Q(x,M)\blacklozenge Q(x,I)-\blacklozenge Q(x,G)$\\
-\hline
+    $\quad$Return $Q(x)=Q(x,M)\blacklozenge Q(x,I)-\blacklozenge Q(x,G)$ \\
+    \hline
 \end{tabular}
 
 
@@ -279,22 +279,22 @@ $\quad$Return $Q(x)=Q(x,M)\blacklozenge Q(x,I)-\blacklozenge Q(x,G)$\\
 Во время работы по перестроению структуры, мы будем временно объекты, которые мы хотим удалить, вставлять в $G'$, которые хотим вставить, вставляем в $I'$. $M'$ -- это, собственно, структура, которую мы строим. Пока мы строим:
 
 \begin{tabular}{|p{11cm}|}
-\hline
-Query(x):
+    \hline
+    Query(x):
 
-$\quad$Return $Q(x)=Q(x,M)\blacklozenge Q(x,I) \blacklozenge Q(x,I')-\blacklozenge Q(x,G)-\blacklozenge Q(x,G')$\\
-\hline
+    $\quad$Return $Q(x)=Q(x,M)\blacklozenge Q(x,I) \blacklozenge Q(x,I')-\blacklozenge Q(x,G)-\blacklozenge Q(x,G')$ \\
+    \hline
 \end{tabular}
 
 
 Когда мы делаем каждое удаления, мы будем делать $c\frac{P(n)}{n}$ (для какой-то константы $c$) шагов построения структуры $M'$.
 
 \begin{tabular}{|p{4cm}|}
-\hline
-Через $\frac{n}{c}$ шагов
+    \hline
+    Через $\frac{n}{c}$ шагов
 
-$M:=M',I:=I',G:=G'$\\
-\hline
+    $M:=M',I:=I',G:=G'$ \\
+    \hline
 \end{tabular}
 
 
