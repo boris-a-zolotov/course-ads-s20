@@ -8,8 +8,8 @@
 \begin{algorithmic}[0]
 	\algrenewcommand\algorithmicprocedure{\textbf{structure}}
 	\Procedure {tree}{}
-        \State root
-        \State size \Comment{optional}
+		\State root
+		\State size \Comment{optional}
 	\EndProcedure
 	\Procedure {node}{}
 		\State left, right
@@ -23,16 +23,16 @@
 	\Procedure {insert}{x}
 		\State standard\_insert(x)
 		\State splay(x)
-    \EndProcedure
-    
+	\EndProcedure
+
 	\Procedure {get}{x}
 		\State splay(x)
-    \EndProcedure
-    
+	\EndProcedure
+
 	\Procedure {erase}{x}
 		\State splay(x)
-        \State splay\_front(root.right)
-        \State standard\_erase(x)
+		\State splay\_front(root.right)
+		\State standard\_erase(x)
 	\EndProcedure
 \end{algorithmic}
 
@@ -43,89 +43,89 @@
 \subsection{Splay}
 
 \begin{figure}
-    \centering
-    \begin{forest}
-        [, phantom, for children={fit=band}, s sep'+=60pt
-            [p,circle,draw
-                [x,circle,draw
-                    [A,tria]
-                    [B,tria]
-                ]
-                [C,tria,name=left]
-            ]
-            [x,circle,draw
-                [A,tria,name=right]
-                [p,circle,draw
-                    [B,tria]
-                    [C,tria]
-                ]
-            ]
-        ]
-        \draw[-latex,very thick,shorten <=5mm,shorten >=5mm] (left) to (right);
-    \end{forest}
-    \caption{Zig}\label{Zig} 
+	\centering
+	\begin{forest}
+		[, phantom, for children={fit=band}, s sep'+=60pt
+			[p,circle,draw
+				[x,circle,draw
+					[A,tria]
+					[B,tria]
+				]
+				[C,tria,name=left]
+			]
+			[x,circle,draw
+				[A,tria,name=right]
+				[p,circle,draw
+					[B,tria]
+					[C,tria]
+				]
+			]
+		]
+		\draw[-latex,very thick,shorten <=5mm,shorten >=5mm] (left) to (right);
+	\end{forest}
+	\caption{Zig}\label{Zig}
 \end{figure}
 
 Итак, нам надо научиться понимать вершину в корень. Это делается при помощи нескольких видов вращений дерева. Все вращения в дальнейшем будем рассматривать с точностью до симметрии. Простейшее вращение называется zig~(см.~рис.~\ref{Zig}). Легко видеть, что это вращение поднимает вершину $x$ на один уровень выше. При помощи одного этого вращения можно поднять вершину в корень, но для амортизационного анализа нам этого не хватит, поэтому мы будем делать сразу двойные вращения.
 
 \begin{figure}
-    \centering
-    \begin{forest}
-        [, phantom, for children={fit=band}, s sep'+=60pt
-            [g,circle,draw
-                [p,circle,draw
-                    [x,circle,draw
-                        [A,tria]
-                        [B,tria]
-                    ]
-                    [C,tria]
-                ]
-                [D,tria,name=left]
-            ]
-            [x,circle,draw
-                [A,tria,name=right]
-                [p,circle,draw
-                    [B,tria]
-                    [g,circle,draw
-                        [C,tria]
-                        [D,tria]
-                    ]
-                ]
-            ]
-        ]
-        \draw[-latex,very thick,shorten <=5mm,shorten >=5mm] (left) to (right);
-    \end{forest}
-    \caption{Zig-zig}\label{ZigZig} 
+	\centering
+	\begin{forest}
+		[, phantom, for children={fit=band}, s sep'+=60pt
+			[g,circle,draw
+				[p,circle,draw
+					[x,circle,draw
+						[A,tria]
+						[B,tria]
+					]
+					[C,tria]
+				]
+				[D,tria,name=left]
+			]
+			[x,circle,draw
+				[A,tria,name=right]
+				[p,circle,draw
+					[B,tria]
+					[g,circle,draw
+						[C,tria]
+						[D,tria]
+					]
+				]
+			]
+		]
+		\draw[-latex,very thick,shorten <=5mm,shorten >=5mm] (left) to (right);
+	\end{forest}
+	\caption{Zig-zig}\label{ZigZig}
 \end{figure}
 
 \begin{figure}
-    \centering
-    \begin{forest}
-        [, phantom, for children={fit=band}, s sep'+=60pt
-            [g,circle,draw
-            [p,circle,draw
-                [A,tria]
-                [x,circle,draw
-                    [B,tria]
-                    [C,tria]
-                ]
-            ]
-            [D,tria,name=left]
-        ]
-        [x,circle,draw
-                [p,circle,draw,name=right
-                    [A,tria]
-                    [B,tria]
-                ]
-                [g,circle,draw
-                    [C,tria]
-                    [D,tria]
-                ]
-            ]
-        ]
-        \draw[-latex,very thick,shorten <=5mm,shorten >=5mm] (left) to (right);
-    \end{forest}
-    \caption{Zig-zag}\label{ZigZag}    
+	\centering
+	\begin{forest}
+		[, phantom, for children={fit=band}, s sep'+=60pt
+			[g,circle,draw
+			[p,circle,draw
+				[A,tria]
+				[x,circle,draw
+					[B,tria]
+					[C,tria]
+				]
+			]
+			[D,tria,name=left]
+		]
+		[x,circle,draw
+				[p,circle,draw,name=right
+					[A,tria]
+					[B,tria]
+				]
+				[g,circle,draw
+					[C,tria]
+					[D,tria]
+				]
+			]
+		]
+		\draw[-latex,very thick,shorten <=5mm,shorten >=5mm] (left) to (right);
+	\end{forest}
+	\caption{Zig-zag}\label{ZigZag}
 \end{figure}
 
 Двойные вращения бывают двух видов: zig-zig (рис.~\ref{ZigZig}) и zig-zag (рис.~\ref{ZigZag}). Оба эти вращения реализуются при помощи пары вращений zig, но для того, чтобы выразить zig-zig, надо сначала выполнить zig от вершины $p$, и только потом от $x$. Zig-zag при этом выражается как два вызова zig от $x$. Стоит отметить, что при splay мы не сможем выполнить двойное вращение, если интересующая нас вершина непосредственный сын корня, тогда мы должны сделать zig и не забыть его посчитать при анализе (но он может быть только один).
@@ -133,92 +133,92 @@
 Для анализа, мы воспользуемся методом потенциалов. Для начала заведем функцию $w: \text{keys} \to \br_{+}$. На нее тоже будут какие-то условия. Про то, какой она может быть, поймем позже, пока можно считать, что она всегда возвращает $1$, реально менять ее придется только для следствий. Определим функцию <<размера>> поддерева $s(x) = \sum_{v \in \text{subtree of } x} w(v)$ и функцию <<ранга>> $r(x) = \log_2 s(x)$ (логарифм двоичный, это неожиданно важно, но дальше основание писать не будем), а функцией потенциала всего дерева $T$ будет $\Phi(T) = \sum_{x \in T} r(x)$. Для того, чтобы метод потенциалов работал, нужно чтобы $\Phi$ всегда было неотрицательно (ну или придется оценить оценить насколько сильно оно бывает отрицательным и прибавить к асимптотике). При $w \equiv 1$ это очевидно, а вообще это надо запомнить как первое ограничение на $w$. Амортизированная стоимость операции splay $\text{am.cost} = \Delta\Phi + \#\text{rotations}$ (да, это просто определение). Пусть мы выполнили один splay. Теперь $r(x)$ и $s(x)$ будут обозначать значения до вызова операции, а $r^\prime(x)$ и $s^\prime(x)$~--- после. Тогда на самом деле мы хотим доказать следующую теорему:
 
 \begin{theorem}
-    $\text{am.cost} \leq 3(r^\prime(x) - r(x)) + \BigO(1)$
+	$\text{am.cost} \leq 3(r^\prime(x) - r(x)) + \BigO(1)$
 \end{theorem}
 \begin{proof}
-    Надо оценить $\Delta\Phi$ для каждого из вращений.
+	Надо оценить $\Delta\Phi$ для каждого из вращений.
 
-    {\it Zig:}
-    \begin{align*}
-        \Delta\Phi & = r^\prime(p) - r(p) + r^\prime(x) - r(x) \\
-        & = r^\prime(p) - r(x) && \text{since $r^\prime(x) = r(p)$} \\
-        & \leq r^\prime(x) - r(x) && \text{since $p$ is lower than $x$ after zig}
-    \end{align*}
-    Дополнительно стоит отметить, что $r^\prime(x) \geq r(x)$ поскольку слева написана сумма по большему множеству, поэтому если мы вдруг захотим это умножить на какую-нибудь произвольно взятую константу $3$, ничего не испортится.
+	{\it Zig:}
+	\begin{align*}
+		\Delta\Phi & = r^\prime(p) - r(p) + r^\prime(x) - r(x) \\
+		& = r^\prime(p) - r(x) && \text{since $r^\prime(x) = r(p)$} \\
+		& \leq r^\prime(x) - r(x) && \text{since $p$ is lower than $x$ after zig}
+	\end{align*}
+	Дополнительно стоит отметить, что $r^\prime(x) \geq r(x)$ поскольку слева написана сумма по большему множеству, поэтому если мы вдруг захотим это умножить на какую-нибудь произвольно взятую константу $3$, ничего не испортится.
 
-    {\it Zig-zig:}
-    \begin{align*}
-        \Delta\Phi & = r^\prime(g) - r(g) + r^\prime(p) - r(p) + r^\prime(x) - r(x) \\
-        & = r^\prime(g) + r^\prime(p) - r(p) - r(x) \\
-        & \leq r^\prime(g) + r^\prime(x) - 2 r(x) && \text{due to the tree structure} \\
-        & \leq 3 (r^\prime(x) - r(x)) - 2 && \text{since $r^\prime(g) + r(x) \leq 2(r^\prime(x) - 1)$}
-    \end{align*}
+	{\it Zig-zig:}
+	\begin{align*}
+		\Delta\Phi & = r^\prime(g) - r(g) + r^\prime(p) - r(p) + r^\prime(x) - r(x) \\
+		& = r^\prime(g) + r^\prime(p) - r(p) - r(x) \\
+		& \leq r^\prime(g) + r^\prime(x) - 2 r(x) && \text{due to the tree structure} \\
+		& \leq 3 (r^\prime(x) - r(x)) - 2 && \text{since $r^\prime(g) + r(x) \leq 2(r^\prime(x) - 1)$}
+	\end{align*}
 
-    Осталось показать почему $r^\prime(g) + r(x) \leq 2(r^\prime(x) - 1)$.
+	Осталось показать почему $r^\prime(g) + r(x) \leq 2(r^\prime(x) - 1)$.
 
-    \begin{align*}
-        \frac{r^\prime(g) + r(x)}{2} & = \log s^\prime(g) + \log s(x) \\
-        & \leq \log \parens*{ \frac{s^\prime(x) - w(p)}{2} } && \text{Jensen's inequality} \\
-        & = \log \parens*{s^\prime (x) - w(p)} - 1 \\
-        & \leq r^\prime(x) - 1
-    \end{align*}
+	\begin{align*}
+		\frac{r^\prime(g) + r(x)}{2} & = \log s^\prime(g) + \log s(x) \\
+		& \leq \log \parens*{ \frac{s^\prime(x) - w(p)}{2} } && \text{Jensen's inequality} \\
+		& = \log \parens*{s^\prime (x) - w(p)} - 1 \\
+		& \leq r^\prime(x) - 1
+	\end{align*}
 
-    {\it Zig-zag:}
-    \begin{align*}
-        \Delta\Phi & = r^\prime(g) - r(g) + r^\prime(p) - r(p) + r^\prime(x) - r(x) \\
-        & = r^\prime(g) + r^\prime(p) - r(p) - r(x) \\
-        & \leq r^\prime(g) + r^\prime(p) - 2 r(x) && \text{due to the tree structure} \\
-        & \leq 3 (r^\prime(x) - r(x)) - 2 && \text{since $r^\prime(g) + r^\prime(p) \leq 2(r^\prime(x) - 1)$}
-    \end{align*}
+	{\it Zig-zag:}
+	\begin{align*}
+		\Delta\Phi & = r^\prime(g) - r(g) + r^\prime(p) - r(p) + r^\prime(x) - r(x) \\
+		& = r^\prime(g) + r^\prime(p) - r(p) - r(x) \\
+		& \leq r^\prime(g) + r^\prime(p) - 2 r(x) && \text{due to the tree structure} \\
+		& \leq 3 (r^\prime(x) - r(x)) - 2 && \text{since $r^\prime(g) + r^\prime(p) \leq 2(r^\prime(x) - 1)$}
+	\end{align*}
 
-    Доказательство неравенства $r^\prime(g) + r^\prime(p) \leq 2(r^\prime(x) - 1)$ в точности повторяет доказательство аналогичного неравенства выше.
+	Доказательство неравенства $r^\prime(g) + r^\prime(p) \leq 2(r^\prime(x) - 1)$ в точности повторяет доказательство аналогичного неравенства выше.
 
-    Изменения потенциала от каждого двойного вращения мы оценили как $3(r^\prime(x) - r(x)) - 2$. Все наши страдания были на самом деле направлены на то, чтобы получить двойку в конце. Теперь, когда мы просуммируем по всем вращениям при операции splay, мы получим оценку $\Delta\Phi \leq 3(r^\prime(x) - r(x)) - \#\text{rotations} + \BigO(1)$, поскольку все промежуточные $r(x)$ скомпенсируются, zig будет вызван не более одного раза, а в оценке двойных вращений есть слагаемое $-2$, которые просуммируются в количество вращений. Таким образом, $\text{am.cost} = \Delta\Phi + \#\text{rotations} \leq 3(r^\prime(x) - r(x)) + \BigO(1)$, что нам и надо.
+	Изменения потенциала от каждого двойного вращения мы оценили как $3(r^\prime(x) - r(x)) - 2$. Все наши страдания были на самом деле направлены на то, чтобы получить двойку в конце. Теперь, когда мы просуммируем по всем вращениям при операции splay, мы получим оценку $\Delta\Phi \leq 3(r^\prime(x) - r(x)) - \#\text{rotations} + \BigO(1)$, поскольку все промежуточные $r(x)$ скомпенсируются, zig будет вызван не более одного раза, а в оценке двойных вращений есть слагаемое $-2$, которые просуммируются в количество вращений. Таким образом, $\text{am.cost} = \Delta\Phi + \#\text{rotations} \leq 3(r^\prime(x) - r(x)) + \BigO(1)$, что нам и надо.
 \end{proof}
 
 Ниже мы будем считать, что наше дерево работает с ключами $1 \ldots n$, выполняет $m$ операций, а $W \coloneqq \sum_i w(i)$. Теперь нам надо выбрать $w$. Надо вспомнить какие условия ограничения мы насобирали на $w$. Ограничения у нас появлялись в двух местах: из определения $w > 0$ (потому что мы потом хотим логарифмировать) и из метода потенциалов $\Phi \geq 0$. При $w \geq 1$ потенциал неотрицателен автоматически, поскольку все слагаемые неотрицательны.
 
 \begin{corollary}[Balance Theorem]
-    Амортизированное время работы на любой последовательности из $m$ запросов $\BigO \parens*{m \log n + n \log n}$.
+	Амортизированное время работы на любой последовательности из $m$ запросов $\BigO \parens*{m \log n + n \log n}$.
 \end{corollary}
 \begin{proof}
-    Берем $w(x) = 1$.
+	Берем $w(x) = 1$.
 \end{proof}
 
 \begin{corollary}[Static Optimality Theorem]
-    Пусть $q_x$~--- количество доступов к элементу $x$. Тогда амортизированное время работы $\BigO \parens*{m + \sum_x q_x \log \parens*{\frac{m}{q_x}}}$.
+	Пусть $q_x$~--- количество доступов к элементу $x$. Тогда амортизированное время работы $\BigO \parens*{m + \sum_x q_x \log \parens*{\frac{m}{q_x}}}$.
 \end{corollary}
 \begin{proof}
-    Берем $w(x) = q_x$.
+	Берем $w(x) = q_x$.
 \end{proof}
 
 Из этой теоремы следует, что splay деревья работают не хуже (с точностью до константного множителя, конечно), чем оптимальное статическое дерево поиска. Аналогичное утверждение про динамические деревья остается открытой проблемой.
-	
+
 \begin{conjecture}[Dynamic Optimality Conjecture]
 	Пусть $A$~--- произвольное двоичное дерево поиска, которое может делать некоторые вращения (Zig,~рис.~\ref{Zig}), и обрабатывать запрос на доступ к вершине за ее глубину. Обозначим $A(S)$~--- время работы $A$ на последовательности запросов $S$. Тогда время работы splay дерева на последовательности $S$ не превосходит $\BigO \parens*{n + A(S)}$.
 \end{conjecture}
 
 Для следующего следствия стоит вспомнить, что мы считаем, что элементы $1 \ldots n$.
 
-\begin{corollary}[Static Finger Theorem] 
+\begin{corollary}[Static Finger Theorem]
 	Пусть $f$~--- некоторый фиксированный элемент, <<finger>>.
-    Тогда время работы $\BigO \parens*{m + n \log n + \sum_{x \text{~--- запрос}} \log \parens*{\abs*{x - f} + 1}}$.
+	Тогда время работы $\BigO \parens*{m + n \log n + \sum_{x \text{~--- запрос}} \log \parens*{\abs*{x - f} + 1}}$.
 \end{corollary}
 \begin{proof}
-    Берем $w(x) = \frac{1}{\parens*{\abs*{x - f} + 1}^2}$. Тогда $W = \BigO(1)$, а потенциал может быть отрицательным, но не больше, чем на $\BigO(n \log n)$, поскольку $w \geq \frac{1}{n^2}$, это слагаемое мы можем просто искусственно добавить к потенциалу и, следовательно, асимптотике.
+	Берем $w(x) = \frac{1}{\parens*{\abs*{x - f} + 1}^2}$. Тогда $W = \BigO(1)$, а потенциал может быть отрицательным, но не больше, чем на $\BigO(n \log n)$, поскольку $w \geq \frac{1}{n^2}$, это слагаемое мы можем просто искусственно добавить к потенциалу и, следовательно, асимптотике.
 \end{proof}
 
 \begin{corollary}[Dynamic Finger Theorem]\label{DynamicFingerTheorem}
 	Аналогично, но теперь $f$, <<finger>>~--- элемент, к которому обращались предыдущим запросом (и, следовательно, находящийся в корне).
-    Тогда время работы $\BigO \parens*{m + n + \sum_{x \text{~--- запрос}} \log \parens*{\abs*{x - f} + 1}}$.
+	Тогда время работы $\BigO \parens*{m + n + \sum_{x \text{~--- запрос}} \log \parens*{\abs*{x - f} + 1}}$.
 \end{corollary}
 \begin{proof}
-    \todo{Надо бы как-нибудь доказать.}
+	\todo{Надо бы как-нибудь доказать.}
 \end{proof}
 
-\begin{theorem}[Scanning Theorem or Sequential Access Theorem or Queue theorem] 
+\begin{theorem}[Scanning Theorem or Sequential Access Theorem or Queue theorem]
 	Доступ к элементам в порядке возрастания работает за амортизированную единицу на запрос.
 \end{theorem}
 \begin{proof}
-    Следует из Dynamic Finger Theorem (Corollary~\ref{DynamicFingerTheorem}).
+	Следует из Dynamic Finger Theorem (Corollary~\ref{DynamicFingerTheorem}).
 \end{proof}

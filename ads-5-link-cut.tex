@@ -5,12 +5,12 @@
 Наша цель --- поддерживать структуру данных, которая умеет хранить лес подвешенных бинарных деревьев и производить с ними следующие операции:
 
 \begin{itemize}
-    \item makeTree($v$) --- создать дерево из одной вершины $v$.
-    \item link($v$, $w$) --- подвесить $u$ к $w$ (при этом $u$ является корнем одного из деревьев леса, а у $w$ не более одного ребёнка).
-    \item cut($v$) --- удалить ребро между $v$ и её родителем.
-    \item findRoot($u$) --- найти корень дерева вершины $u$.
-    \item findCost($u$) --- возвращает ближайшее к корню ребро минимального веса на пути от $u$ до корня.
-    \item addCost($u$, $x$) --- добавить $x$ к весам всех рёбер на пути от $u$ до корня.
+	\item makeTree($v$) --- создать дерево из одной вершины $v$.
+	\item link($v$, $w$) --- подвесить $u$ к $w$ (при этом $u$ является корнем одного из деревьев леса, а у $w$ не более одного ребёнка).
+	\item cut($v$) --- удалить ребро между $v$ и её родителем.
+	\item findRoot($u$) --- найти корень дерева вершины $u$.
+	\item findCost($u$) --- возвращает ближайшее к корню ребро минимального веса на пути от $u$ до корня.
+	\item addCost($u$, $x$) --- добавить $x$ к весам всех рёбер на пути от $u$ до корня.
 \end{itemize}
 
 При этом findCost можно адаптировать, чтобы искать не минимум на пути, а, например, сумму и т.д.
@@ -20,16 +20,16 @@
 В описании структуры данных и доказательстве времени работы будет две смысловых части.
 
 \begin{enumerate}
-    \item Научиться реализовывать структуру для частного случая дерева --- пути. А именно, нам потребуются следующие операции:
-        \begin{itemize}
-            \item makePath($v$) --- создать путь из одной вершины.
-            \item findPath($v$) --- вернуть путь, в котором лежит вершина $v$.
-            \item findTail($p$) --- найти верхний конец пути $p$.
-            \item join($p$, $v$, $q$) --- объединить пути $p$ и $q$ в один через вершину $v$, т.е., верхний конец пути $p$ и нижний конец пути $q$ соединить с $v$.
-            \item split($v$) --- отрезать ребро, ведущее из $v$ в предка в пути.
-            \item findPathCost($u$), addPathCost($u$, $x$).
-        \end{itemize}
-    \item Выразить операции на лесе через операции на путях. Т.е., разобьём вершины дерева на пути. После этого некоторые рёбра лежат на путях (сплошные рёбра), а некоторые соединяют разные пути (пунктирные рёбра). Для операций на дереве нам понадобится также дополнительная функция expose($v$), которая превращает путь от $v$ до корня дерева в один из путей разбиения (при этом рёбра, идущие из $v$ вниз, не входят в этот путь).
+	\item Научиться реализовывать структуру для частного случая дерева --- пути. А именно, нам потребуются следующие операции:
+		\begin{itemize}
+			\item makePath($v$) --- создать путь из одной вершины.
+			\item findPath($v$) --- вернуть путь, в котором лежит вершина $v$.
+			\item findTail($p$) --- найти верхний конец пути $p$.
+			\item join($p$, $v$, $q$) --- объединить пути $p$ и $q$ в один через вершину $v$, т.е., верхний конец пути $p$ и нижний конец пути $q$ соединить с $v$.
+			\item split($v$) --- отрезать ребро, ведущее из $v$ в предка в пути.
+			\item findPathCost($u$), addPathCost($u$, $x$).
+		\end{itemize}
+	\item Выразить операции на лесе через операции на путях. Т.е., разобьём вершины дерева на пути. После этого некоторые рёбра лежат на путях (сплошные рёбра), а некоторые соединяют разные пути (пунктирные рёбра). Для операций на дереве нам понадобится также дополнительная функция expose($v$), которая превращает путь от $v$ до корня дерева в один из путей разбиения (при этом рёбра, идущие из $v$ вниз, не входят в этот путь).
 \end{enumerate}
 
 \subsection{Выражение операций на дереве через операции на путях}
@@ -39,31 +39,31 @@
 \begin{algorithmic}[1]
 	\Procedure {makeTree}{u}
 		\State makePath(u)
-    \EndProcedure
-    
+	\EndProcedure
+
 	\Procedure {findRoot}{u}
 		\State findTail(expose(u))
-    \EndProcedure
-    
-    \Procedure {findCost}{u}
-        \State expose(u)
+	\EndProcedure
+
+	\Procedure {findCost}{u}
+		\State expose(u)
 		\State findPathCost(u)
-    \EndProcedure
-    
-    \Procedure {addCost}{u, x}
-        \State expose(u)
+	\EndProcedure
+
+	\Procedure {addCost}{u, x}
+		\State expose(u)
 		\State addPathCost(u, x)
-    \EndProcedure
-    
-    \Procedure {link}{u, w}
+	\EndProcedure
+
+	\Procedure {link}{u, w}
 		\State join(\o, expose(u), expose(w))
-    \EndProcedure
-    
-    \Procedure {cut}{v}
+	\EndProcedure
+
+	\Procedure {cut}{v}
 		\State expose(v)
 		\State split(v)
-    \EndProcedure
-	
+	\EndProcedure
+
 \end{algorithmic}
 
 Таким образом, expose помогает нам свести задачу на дереве к задаче на пути. Мы считаем, что функция expose возвращает указатель на путь, получившийся в результате её исполнения. Некоторых пояснений требует функция link: здесь мы отождествляем вершину и путь, состоящий только из этой вершины.
@@ -72,20 +72,20 @@
 
 \begin{algorithmic}[1]
 
-    \Procedure {expose}{u}
+	\Procedure {expose}{u}
 		\State p := \o \Comment{Здесь будем накапливать наш текущий путь}
 		\While{u $\ne$ \o}
-		    \State w := successor(findPath(u)) \Comment{Запомним следующий сверху путь в дереве}
-		    \State (q, r) := split(u) \Comment{Отрежем у u сплошное ребро вниз}
-		    \If{q $\ne$ \o} \Comment{q --- часть пути, проходящего через u, ниже u}
-		        \State successor(q) := u \Comment{Теперь ребро из q в u --- пунктирное}
-		    \EndIf
-		    \State p := join(p, u, r) \Comment{А ребро из u в наш текущий путь --- сплошное}
-		    \State u := w \Comment{Перейдём к вершине следующего пути}
+			\State w := successor(findPath(u)) \Comment{Запомним следующий сверху путь в дереве}
+			\State (q, r) := split(u) \Comment{Отрежем у u сплошное ребро вниз}
+			\If{q $\ne$ \o} \Comment{q --- часть пути, проходящего через u, ниже u}
+				\State successor(q) := u \Comment{Теперь ребро из q в u --- пунктирное}
+			\EndIf
+			\State p := join(p, u, r) \Comment{А ребро из u в наш текущий путь --- сплошное}
+			\State u := w \Comment{Перейдём к вершине следующего пути}
 		\EndWhile
 		\State successor(p) := \o
-    \EndProcedure
-    
+	\EndProcedure
+
 \end{algorithmic}
 
 Операцию, которая происходит в теле while, назовём splice.
@@ -94,9 +94,9 @@
 Пусть выполнено $m$ операций с деревом, из них $n$ операций makeTree (т.е., в дереве не более $n$ вершин). Тогда верно следующее:
 
 \begin{enumerate}
-    \item Мы произвели $\mathcal{O}(m)$ операций с путями дерева.
-    \item expose был вызван $\mathcal{O}(m)$ раз.
-    \item За все вызовы expose было выполнено $\mathcal{O}(m \log{n})$ операций splice.
+	\item Мы произвели $\mathcal{O}(m)$ операций с путями дерева.
+	\item expose был вызван $\mathcal{O}(m)$ раз.
+	\item За все вызовы expose было выполнено $\mathcal{O}(m \log{n})$ операций splice.
 \end{enumerate}
 \end{theorem}
 
@@ -109,8 +109,8 @@
 Мы будем рассматривать следующие величины:
 
 \begin{itemize}
-    \item HS --- количество тяжёлых сплошных рёбер в текущий момент времени;
-    \item HSC --- сколько раз мы создавали тяжёлые сплошные рёбра к текущему моменту времени.
+	\item HS --- количество тяжёлых сплошных рёбер в текущий момент времени;
+	\item HSC --- сколько раз мы создавали тяжёлые сплошные рёбра к текущему моменту времени.
 \end{itemize}
 
 Каждый splice превращает некоторое пунктирное ребро в сплошное. Будем рассматривать отдельно лёгкие и тяжёлые рёбра. Так как на пути от $u$ до корня не более логарифма лёгких рёбер, то и превратить лёгкое пунктирное в лёгкое сплошное мы могли не более логарифма раз.
@@ -136,47 +136,47 @@
 Для реализации операций на путях мы будем использовать Splay-дерево. Будем хранить путь в дереве таким образом, чтобы при обходе дерева dfs-ом мы выписывали путь слева направо, заканчивая вершиной tail (таким образом, findTail будет просто возвращать самую правую вершину дерева). В узле дерева будем хранить также следующие величины:
 
 \begin{itemize}
-    \item $\Delta \text{cost}(x) = \text{cost}(x) - \text{mincost}(x)$, где mincost($x$) --- это минимальная стоимость вершины в поддереве $x$.
-    \item $\Delta \text{min}(x) = \text{mincost}(x) - \text{mincost}(p(x))$, а если $x$ --- корень дерева, то $\Delta \text{min}(x) = \text{mincost}(x)$
+	\item $\Delta \text{cost}(x) = \text{cost}(x) - \text{mincost}(x)$, где mincost($x$) --- это минимальная стоимость вершины в поддереве $x$.
+	\item $\Delta \text{min}(x) = \text{mincost}(x) - \text{mincost}(p(x))$, а если $x$ --- корень дерева, то $\Delta \text{min}(x) = \text{mincost}(x)$
 \end{itemize}
 
 \begin{algorithmic}[1]
 	\Procedure {makePath}{u}
 		\State makeSplayTree(u)
-    \EndProcedure
-    
+	\EndProcedure
+
 	\Procedure {findPath}{v}
 		\State splay(v)
 		\State return(v)
-    \EndProcedure
-    
-    \Procedure {findPathCost}{v}
-        \While{right(v) $\ne 0$ \textbf{and} min(right(v)) = 0 \textbf{or} left(v) $\ne 0$ \textbf{and} min(left(v)) = 0}
-            \If{right(v) $\ne 0$ \textbf{and} min(right(v)) = 0}
-                \State v := right(v)
-            \Else
-                \State v := left(v)
-            \EndIf
-        \EndWhile
-        \State splay(v)
-        \State return(v, $\Delta \text{min}(v)$)
-    \EndProcedure
-    
-    \Procedure {addPathCost}{v, x}
-        \State $\Delta \text(min)(v) = \Delta \text(min)(v) + x$
-    \EndProcedure
-    
-    \Procedure {join}{p, v, q}
+	\EndProcedure
+
+	\Procedure {findPathCost}{v}
+		\While{right(v) $\ne 0$ \textbf{and} min(right(v)) = 0 \textbf{or} left(v) $\ne 0$ \textbf{and} min(left(v)) = 0}
+			\If{right(v) $\ne 0$ \textbf{and} min(right(v)) = 0}
+				\State v := right(v)
+			\Else
+				\State v := left(v)
+			\EndIf
+		\EndWhile
+		\State splay(v)
+		\State return(v, $\Delta \text{min}(v)$)
+	\EndProcedure
+
+	\Procedure {addPathCost}{v, x}
+		\State $\Delta \text(min)(v) = \Delta \text(min)(v) + x$
+	\EndProcedure
+
+	\Procedure {join}{p, v, q}
 		\State v.left = p
 		\State v.right = q
-    \EndProcedure
-    
-    \Procedure {split}{v}
+	\EndProcedure
+
+	\Procedure {split}{v}
 		\State splay(v)
 		\State cut(v, v.left)
 		\State cut(v, v.right)
-    \EndProcedure
-	
+	\EndProcedure
+
 \end{algorithmic}
 
 Для анализа мы воспользуемся уже доказанной асимптотикой splay-дерева. Мы рассмотрим <<виртуальное>> splay-дерево, которое будет состоять из всех splay-деревьев путей, а также проведённых между путями пунктирными рёбрами.
@@ -184,9 +184,9 @@
 Потенциалы будут такими же:
 
 $$iw(v) = \begin{cases}
-         \text{size}(v), & \text{если у v два пунктирных ребра}\\
-         \text{size}(v) - \text{size}(u), & \text{если (u, v) --- сплошное ребро}
-         \end{cases}$$
+		 \text{size}(v), & \text{если у v два пунктирных ребра}\\
+		 \text{size}(v) - \text{size}(u), & \text{если (u, v) --- сплошное ребро}
+		 \end{cases}$$
 
 $$tw(v) = \sum_{\text{u --- из поддерева v в виртуальном дереве}} iw(u)$$
 
