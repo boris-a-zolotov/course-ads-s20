@@ -40,33 +40,31 @@
 	Мы хотим построить структуру данных, которая обладает следующими свойствами:
 
 	\begin{itemize}
-		\item Она занимает $S^\prime(n) = O(S(n))$ памяти;
+		\item Она занимает $S^\prime(n) = \BigO(S(n))$ памяти;
 
-		\item Она строится за $P^\prime(n) = O(P(n))$;
+		\item Она строится за $P^\prime(n) = \BigO(P(n))$;
 
-		\item Она отвечает на вопрос за $Q^\prime(n) = O(\log n\cdot Q(n))$;
+		\item Она отвечает на вопрос за $Q^\prime(n) = \BigO(\log n \cdot Q(n))$;
 
-		\item Вставка занимает $I^\prime(n) = O\left(\log n\frac{P(n)}{n}\right)$.
-
-
+		\item Вставка занимает $I^\prime(n) = \BigO\left(\log n \cdot \frac{P(n)}{n}\right)$.
 	\end{itemize}
 
 	В данной задаче имеется ввиду амортизированное время для запроса и вставки.
 \end{task}
 
-Итак, давайте строить. Разбиваем наши элементы на на логарифмическое количество уровней. Теперь у нас имеется $\log n $ уровней, которые называются $L_0,\ldots,L_l$:
+Итак, давайте строить. Разбиваем наши элементы на на логарифмическое количество уровней. Теперь у нас имеется $\log n$ уровней, которые называются $L_0, \ldots, L_l$:
 \begin{itemize}
 	\item $L_0$: $\varnothing$ или структура с $1$ элементом
 
 	\item $L_1$: $\varnothing$ или структура с $2$ элементами
 
-	\item ...
+	\item[]{$\vdots$}
 
-	\item $L_i$: $\varnothing$ или структура с $2^{i-1}$ элементами
+	\item $L_i$: $\varnothing$ или структура с $2^{i - 1}$ элементами
 
-	\item ...
+	\item[]{$\vdots$}
 
-	\item $L_l$: $\varnothing$ или структура с $2^{l-1}$ элементами
+	\item $L_l$: $\varnothing$ или структура с $2^{l - 1}$ элементами
 \end{itemize}
 
 Запрос делаем следующим образом:
@@ -82,7 +80,7 @@
 
 	$\quad$$\quad$if $L_i \ne \varnothing$
 
-	$\quad$$\quad$$\quad$$a \coloneqq a\blacklozenge Q(x,L_i)$
+	$\quad$$\quad$$\quad$$a \coloneqq a \blacklozenge Q(x, L_i)$
 
 	$\quad$return $a$ \\
 	\hline
@@ -91,12 +89,12 @@
 
 Ясно, что на запрос мы потратим времени
 \begin{equation*}
-	\sum_{i = 0}^{l-1}Q(2^i) < l\cdot Q(n) = O(\log n)Q(n).
+	\sum_{i = 0}^{l - 1}Q(2^i) < l \cdot Q(n) = \BigO(\log n)Q(n).
 \end{equation*}
 
 
 \begin{remark}
-	Если $Q(n)$~--- большое, то есть $Q(n) > n^\varepsilon$ при каком-то $\varepsilon > 0$, то время на запросе~--- это $O(Q(n))$.
+	Если $Q(n)$~--- большое, то есть $Q(n) > n^\varepsilon$ при каком-то $\varepsilon > 0$, то время на запросе~--- это $\BigO(Q(n))$.
 \end{remark}
 
 Вставку делаем следующим образом:
@@ -108,9 +106,9 @@
 
 	$\quad$Find $\min k: L_k = \varnothing$
 
-	$\quad$build $L_k \coloneqq \{x\}\cup \bigcup_{i < k} L_i$
+	$\quad$build $L_k \coloneqq \set{x} \cup \bigcup_{i < k} L_i$
 
-	$\quad$for $i = 0$ to $k-1$
+	$\quad$for $i = 0$ to $k - 1$
 
 	$\quad$$\quad$destroy $L_i$ \\
 
@@ -123,30 +121,30 @@
 Мы хотим, чтоб цена за одну вставку была
 
 \begin{equation*}
-	I^\prime(n) = O(\log n )\frac{P(n)}{n}.
+	I^\prime(n) = \BigO(\log n)\frac{P(n)}{n}.
 \end{equation*}
 
 \begin{equation*}
-	I^\prime(n) = O(\log n )\frac{P(n)}{n} = \sum_{i = 0}^{\log n}\frac{P(2^i)}{2^i}.
+	I^\prime(n) = \BigO(\log n)\frac{P(n)}{n} = \sum_{i = 0}^{\log n}\frac{P(2^i)}{2^i}.
 \end{equation*}
 
 Ясно, что за $n$ вставок у нас получится
 
 \begin{equation*}
-	\sum_{i = 0}^{\log n}P\left(2^i\right)\frac{n}{2^i} = n \sum_{i = 0}^{\log n}\frac{P(2^i)}{2^i} = O(\log n)P(n).
+	\sum_{i = 0}^{\log n}P\left(2^i\right)\frac{n}{2^i} = n \sum_{i = 0}^{\log n}\frac{P(2^i)}{2^i} = \BigO(\log n)P(n).
 \end{equation*}
 Что и требовалось.
 
 
 \begin{remark}
-	Если $P(n) > n^{1 + \varepsilon}$, где $\varepsilon > 0$, то $I^\prime(n) = O\left(\frac{P(n)}{n}\right)$.
+	Если $P(n) > n^{1 + \varepsilon}$, где $\varepsilon > 0$, то $I^\prime(n) = \BigO\left(\frac{P(n)}{n}\right)$.
 \end{remark}
 
 
 \begin{task}
 	Мы хотим получить тот же результат, что и в Задаче 1, только время для запроса и вставку теперь не амортизированное, а в худшем случае.
 \end{task}
-Теперь на каждом уровне у нас будут старые структуры и новые. То есть, на уровне $i$ будут находиться структуры $O_i^1,O_i^2,O_i^3,N_i$, снова в каждой из них $\varnothing$ или $2^i$ объектов. Также ещё мы хотим, чтоб выполнялось:
+Теперь на каждом уровне у нас будут старые структуры и новые. То есть, на уровне $i$ будут находиться структуры $O_i^1, O_i^2, O_i^3, N_i$, снова в каждой из них $\varnothing$ или $2^i$ объектов. Также ещё мы хотим, чтоб выполнялось:
 
 \begin{itemize}
 	\item если $O_i^1 = \varnothing$, то $O_i^2 = \varnothing$
@@ -168,15 +166,15 @@
 
 	$\quad$$\quad$if $Q^1_i \ne \varnothing$
 
-	$\quad$$\quad$$\quad$$a_i = a \blacklozenge Query(x,Q^1_i)$
+	$\quad$$\quad$$\quad$$a_i = a \blacklozenge Query(x, Q^1_i)$
 
 	$\quad$$\quad$if $Q^2_i \ne \varnothing$
 
-	$\quad$$\quad$$\quad$$a_i = a \blacklozenge Query(x,Q^2_i)$
+	$\quad$$\quad$$\quad$$a_i = a \blacklozenge Query(x, Q^2_i)$
 
 	$\quad$$\quad$if $Q^3_i \ne \varnothing$
 
-	$\quad$$\quad$$\quad$$a_i = a \blacklozenge Query(x,Q^3_i)$
+	$\quad$$\quad$$\quad$$a_i = a \blacklozenge Query(x, Q^3_i)$
 
 	$\quad$return $a$ \\
 
@@ -194,17 +192,17 @@
 
 	$\quad$for $i = l \ldots 1$
 
-	$\quad$$\quad$if $O^1_{i-1} \ne \varnothing$ and $O^2_{i-1} \ne \varnothing$
+	$\quad$$\quad$if $O^1_{i - 1} \ne \varnothing$ and $O^2_{i - 1} \ne \varnothing$
 
-	$\quad$$\quad$$\quad$do $\frac{P(2^i)}{2^i}$ шагов построения $N_i( \coloneqq O^1_{i-1}\cup O_{i-1}^2)$
+	$\quad$$\quad$$\quad$do $\frac{P(2^i)}{2^i}$ шагов построения $N_i( \coloneqq O^1_{i - 1} \cup O_{i - 1}^2)$
 
 	$\quad$$\quad$$\quad$if $N_i$ is complete
 
-			$\quad$$\quad$$\quad$$\quad$destroy $O_{i-1}^1,O_{i-1}^2$
+			$\quad$$\quad$$\quad$$\quad$destroy $O_{i - 1}^1, O_{i - 1}^2$
 
-	$\quad$$\quad$$\quad$$\quad$$O^1_{i-1} \coloneqq O_{i-1}^3$
+	$\quad$$\quad$$\quad$$\quad$$O^1_{i - 1} \coloneqq O_{i - 1}^3$
 
-	$\quad$$\quad$$\quad$$\quad$destroy $O_{i-1}^3$
+	$\quad$$\quad$$\quad$$\quad$destroy $O_{i - 1}^3$
 
 
 	$\quad$$\quad$$\quad$$\quad$Update(i)
@@ -241,25 +239,25 @@
 
 Все ошки не могут быть заняты, это доказывается по индукции, но это было оставлено в качестве упражнения.
 
-Идея в том, что мы не делаем построение сразу, а делаем столько его шагов, сколько можем себе позволить. А значит, время вставки даже в худшем случае будет $O\left(\frac{P(n)}{n}\log n\right)$.
+Идея в том, что мы не делаем построение сразу, а делаем столько его шагов, сколько можем себе позволить. А значит, время вставки даже в худшем случае будет $\BigO\left(\frac{P(n)}{n}\log n\right)$.
 
 \subsection{}
 
 \begin{definition}
 	Говорим, что задача поиска является invertible, если функция $Q$ обладает следующим свойством:
-	Если $D = D_1\cup D_2$, то
+	Если $D = D_1 \cup D_2$, то
 
 	\begin{equation*}
-		Q(x,D_1) = Q(x,D) - \blacklozenge Q(x,D_2),
+		Q(x, D_1) = Q(x, D) - \blacklozenge Q(x, D_2),
 	\end{equation*}
-	где $ - \blacklozenge$ быстро считается.
+	где $- \blacklozenge$ быстро считается.
 \end{definition}
 
 Предположим, что у нас есть такая функция $Q$. Давайте сформулируем задачу:
 
 
 \begin{task}
-	Пусть у нас есть структура данных $M$, которая умеет вставлять и ещё другая структура данных $G$, в которую мы будем вставлять элемент, который хотим удалить из $M$. Хотим, чтоб амортизированное время удаления из $M$ равнялось $O\left(P(n)\frac{\log n}{n}\right)$.
+	Пусть у нас есть структура данных $M$, которая умеет вставлять и ещё другая структура данных $G$, в которую мы будем вставлять элемент, который хотим удалить из $M$. Хотим, чтоб амортизированное время удаления из $M$ равнялось $\BigO\left(P(n)\frac{\log n}{n}\right)$.
 \end{task}
 
 
@@ -267,7 +265,7 @@
 	\hline
 	Query(x):
 
-	$\quad$Return $Q(x,M) - \blacklozenge Q(x,G)$ \\
+	$\quad$Return $Q(x, M) - \blacklozenge Q(x, G)$ \\
 	\hline
 \end{tabular}
 
@@ -275,7 +273,7 @@
 Подвох заключается в том, что у нас может быть много удалённых элементов, поэтому весь наш анализ будет от количества элементов, которые когда-либо вставлялись. А мы хотим не этого.
 
 Мы будем ждать момента, когда $|G| > \frac{1}{2}|M|$, и в это время перестраивать структуру полностью. Идея в том, что между двумя такими моментами пройдёт минимум $\frac{n}{2}$ удалений, а значит, когда мы считаем амортизированную стоимость удаления, мы можем заключить, что цена каждого удаления~--- это
-$O\left(\frac{P(n)}{n}\right) + O\left(P(n)\frac{log n}{n}\right)$ (второе слагаемое~--- это вставки в структуру $G$).
+$\BigO\left(\frac{P(n)}{n}\right) + \BigO\left(P(n)\frac{\log n}{n}\right)$ (второе слагаемое~--- это вставки в структуру $G$).
 
 
 \begin{tabular}{|p{5cm}|}
@@ -297,19 +295,19 @@ $O\left(\frac{P(n)}{n}\right) + O\left(P(n)\frac{log n}{n}\right)$ (второе
 	Мы хотим получить тот же результат, что и в задаче 3, только время теперь не амортизированное, а в худшем случае.
 \end{task}
 
-Для решения Задачи 4 мы поддерживаем три структуры: $M,I,G$:
+Для решения Задачи 4 мы поддерживаем три структуры: $M, I, G$:
 
 
 \begin{tabular}{|p{8cm}|}
 	\hline
 	Query(x):
 
-	$\quad$Return $Q(x) = Q(x,M)\blacklozenge Q(x,I) - \blacklozenge Q(x,G)$ \\
+	$\quad$Return $Q(x) = Q(x, M) \blacklozenge Q(x, I) - \blacklozenge Q(x, G)$ \\
 	\hline
 \end{tabular}
 
 
-В какой-то момент снова перестраиваем структуру, а именно в случае, если $|G| > \frac{1}{2}(|M| + |I|)$. Чтоб удовлетворять запросам, придётся заморозить наши структуры. Поэтому также поддерживаем ещё три структуры: $M^\prime,I^\prime,G^\prime$.
+В какой-то момент снова перестраиваем структуру, а именно в случае, если $|G| > \frac{1}{2}(|M| + |I|)$. Чтоб удовлетворять запросам, придётся заморозить наши структуры. Поэтому также поддерживаем ещё три структуры: $M^\prime, I^\prime, G^\prime$.
 
 Во время работы по перестроению структуры, мы будем временно объекты, которые мы хотим удалить, вставлять в $G^\prime$, которые хотим вставить, вставляем в $I^\prime$. $M^\prime$~--- это, собственно, структура, которую мы строим. Пока мы строим:
 
@@ -318,7 +316,7 @@ $O\left(\frac{P(n)}{n}\right) + O\left(P(n)\frac{log n}{n}\right)$ (второе
 	\hline
 	Query(x):
 
-	$\quad$Return $Q(x) = Q(x,M)\blacklozenge Q(x,I) \blacklozenge Q(x,I^\prime) - \blacklozenge Q(x,G) - \blacklozenge Q(x,G^\prime)$ \\
+	$\quad$Return $Q(x) = Q(x, M) \blacklozenge Q(x, I) \blacklozenge Q(x, I^\prime) - \blacklozenge Q(x, G) - \blacklozenge Q(x, G^\prime)$ \\
 	\hline
 \end{tabular}
 
@@ -330,7 +328,7 @@ $O\left(\frac{P(n)}{n}\right) + O\left(P(n)\frac{log n}{n}\right)$ (второе
 	\hline
 	Через $\frac{n}{c}$ шагов
 
-	$M \coloneqq M^\prime,I \coloneqq I^\prime,G \coloneqq G^\prime$ \\
+	$M \coloneqq M^\prime, I \coloneqq I^\prime, G \coloneqq G^\prime$ \\
 	\hline
 \end{tabular}
 
@@ -338,7 +336,7 @@ $O\left(\frac{P(n)}{n}\right) + O\left(P(n)\frac{log n}{n}\right)$ (второе
 Ясно, что время в худшем случае будет каким надо, а именно,
 
 \begin{equation*}
-	O\left(P(n)\frac{\log n}{n} \right).
+	\BigO\left(P(n)\frac{\log n}{n} \right).
 \end{equation*}
 
 \subsection{}
@@ -351,13 +349,13 @@ $O\left(\frac{P(n)}{n}\right) + O\left(P(n)\frac{log n}{n}\right)$ (второе
 
 Когда нам нужно удалить $x$: сделаем weak deletion $x$ в каждом уровне, содержащем $x$ (+ чтоб найти эти уровни, нам нужен какой-то словарик, который по элементу называет уровни, где он содержится).
 
-Делаем те же глобальные перестройки, то есть когда не удаленных объектов $ > \frac{1}{2}$ удалённых~--- делаем global rebuild.
+Делаем те же глобальные перестройки, то есть когда не удаленных объектов $> \frac{1}{2}$ удалённых~--- делаем global rebuild.
 
 Из прошлого рассуждения знаем, что
 
 \begin{itemize}
-	\item амортизированное время вставки~--- это $O\left(P(n)\frac{\log n}{n} + D(n)\right)$;
-	\item амортизированное время удаления~--- это $O\left(\frac{P(n)}{n}\right)$.
+	\item амортизированное время вставки~--- это $\BigO\left(P(n)\frac{\log n}{n} + D(n)\right)$;
+	\item амортизированное время удаления~--- это $\BigO\left(\frac{P(n)}{n}\right)$.
 \end{itemize}
 
-Это также можно несколькими структурами сделать в худшем случае. А именно, структурами структурами: $M,S,M^\prime,S^\prime,u$. $M$~--- главная, $S$ её дублирует. Когда у нас удалений становится больше, чем половина тех элементов, которые лежат в $M$, снова начинаем глобальное перестроение. Для этого мы заморозим структуру $S$, для новых запросов заведём $ u$~--- очередь запросов, которую будем применять к $M^\prime$. $M^\prime$~--- это рабочая копия $M$ на время перестроения. Когда мы закончили, у нас $M^\prime$ будет на правах $M$ и $S^\prime$ на правах $S$. После этого надо сделать все обновления в очереди $u$. Нужно просто подобрать константы, сколько шагов построения $S^\prime$ и $M^\prime$ мы будем выполнять каждый раз, когда делаем удаление.
+Это также можно несколькими структурами сделать в худшем случае. А именно, структурами структурами: $M, S, M^\prime, S^\prime, u$. $M$~--- главная, $S$ её дублирует. Когда у нас удалений становится больше, чем половина тех элементов, которые лежат в $M$, снова начинаем глобальное перестроение. Для этого мы заморозим структуру $S$, для новых запросов заведём $u$~--- очередь запросов, которую будем применять к $M^\prime$. $M^\prime$~--- это рабочая копия $M$ на время перестроения. Когда мы закончили, у нас $M^\prime$ будет на правах $M$ и $S^\prime$ на правах $S$. После этого надо сделать все обновления в очереди $u$. Нужно просто подобрать константы, сколько шагов построения $S^\prime$ и $M^\prime$ мы будем выполнять каждый раз, когда делаем удаление.
