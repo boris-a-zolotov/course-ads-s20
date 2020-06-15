@@ -1,5 +1,5 @@
 
-\section{Mergeable trees}
+\section{Mergeable trees} \noteauthor{Никита Елизаров}
 Полное описание всех структур и доказательств можно найти в \cite{georgiadis2011data}.
 \subsection{Описание структуры и чего мы хотим от этой структуры}
 \begin{itemize}
@@ -25,7 +25,7 @@
        \end{itemize}
        Далее мы совмещаем эти два пути с сохранением свойства кучи. Примеры двух \textbf{merge} показаны ниже:
        \begin{center}
-           \includegraphics[scale = 0.4]{merge.png}
+           \includegraphics[scale = 0.4]{img/merge.png}
        \end{center}
     \end{itemize}
     \item Реализация.
@@ -90,7 +90,7 @@ $topmost(v,w)$~--- мы идём по пути от $v$ к $root(v),$ начин
 
 Операцию, которая находится в теле while назовём \textbf{Merge step}. Картинка к ней показана ниже:
 \begin{center}
-    \includegraphics[scale = 0.4]{mergestep.png}
+    \includegraphics[scale = 0.4]{img/mergestep.png}
 \end{center}
 
 Чтобы оценить количество шагов, достаточно оценить количество изменений родителя. Поймём, что количество изменений родителя это количество merge steps плюс не более чем 2: в каждом merge step ровно одно изменение родителя, еще одно берётся в самом конце (\textbf{link(x, w)}) и еще может быть одно, если они из разных деревьев.
@@ -226,7 +226,7 @@ $\quad$
     \item сначала мы снова заботимся о том, чтобы обе вершины оказались в одном дереве, делая \textbf{link};
     \item в остальном делаем merge также как и в прошлой подсекции (что мы делаем с обновлением структур поймём позже)
     \begin{center}
-        \includegraphics[scale = 0.6]{new_merge.jpg}
+        \includegraphics[scale = 0.6]{img/new_merge.jpg}
     \end{center}
     \item \textbf{(?)} утверждается, что понимать, куда именно вставлять вершины мы будем уметь, используя структуру на путях (которую мы еще не ввели) и \textbf{topnode}.
     
