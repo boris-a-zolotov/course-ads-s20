@@ -1,0 +1,57 @@
+\subsection{Нижняя оценка на создание ретроактивной структуры: wordRAM}
+
+\begin{definition}
+	{\itshape Модель вычислений} {\scshape cell-probe} — это {\scshape word RAM}, в которой единственной операцией, имеющей цену и учитывающейся при подсчёте времени работы, является доступ к данным. Данные по-прежнему хранятся в блоках фиксированного размера, чтение целого блока имеет единичную стоимость.
+\end{definition}
+
+\begin{definition}
+	{\itshape Свёртка двух последовательностей слов $\lag x_0 \ldots x_{k-1} \rag$, $\lag y_0 \ldots y_{k-1} \rag$}~— это последовательность слов
+     \begin{equation} \label{eq:dynConv}
+	\lag w_0 \ldots w_{2k-1} \rag
+	\text{,\quad такая, что\quad}
+	w_i = \sum\limits_{a+b=i} x_a \times y_b.
+     \end{equation}
+\end{definition}
+
+\begin{task}[Динамическая свёртка] \label{task:dynConv}
+	Требуется поддерживать в памяти набор слов $\lag x_0 \ldots x_{2k-1} \rag$ и эффективно отвечать на следующие запросы:
+     \begin{enumerate}
+	\item $\text{\tt change}_k (x)$: присвоить $x_k$ значение $x$.
+	\item $\text{\tt alg\_quеry}_k$: вернуть $k$-ую компоненту свёртки
+	     \begin{equation*}
+		\lag x_0 \ldots x_{k-1} \rag \otimes \lag x_{k} \ldots x_{2k-1} \rag.
+	     \end{equation*}
+     \end{enumerate}
+\end{task}
+
+\begin{theorem}[\cite{frandsen1998dynalg}, Теорема 1]
+	Задача~\ref{task:dynConv} не решается на моделях {\scshape cell-probe} и {\scshape word RAM} быстрее, чем $\Omega \ll \sqrt{n} \rr$ в худшем случае.
+\end{theorem}
+
+\begin{theorem}[\cite{demaine2007retroactive}, Теорема 3]
+	Существует структура данных в модели {\scshape word RAM} со словами размера $\log n$, которая поддерживает обновление и запрос за $O(1)$, но любая частично ретроактивная структура данных с теми же функциями требует время
+     \begin{equation*}
+	\Omega \ll \sqrt{\frac{r}{\log r}} \rr\text{\quad amortised}
+     \end{equation*}
+	либо на обновление, либо на запрос.
+\end{theorem}
+
+\begin{proof}
+	Приведём пример такой структуры. Она будет поддерживать набор слов $\lag w_1 \ldots w_m \rag$ линейного размера. Изначально все эти слова нулевые. Будут доступны следующие операции:
+
+\begin{center} \begin{tabular}{ll}
+	{\tt update} & $w_i \coloneqq x$ \\
+		& $w_i \coloneqq w_j + w_k$ \\
+		& $w_i \coloneqq w_j \times w_k$ \\
+	{\tt query} & $w_i = \text{?}$
+\end{tabular} \end{center}
+
+	Модель вычислений {\scshape word RAM} позволяет делать такие операции за константное время. Над такой структурой данных мы можем за $O(n \log n)$ времени и $O(n)$ памяти сгенерировать и проделать последовательность обновлений, которая посчитает свёртку~\eqref{eq:dynConv} двух половинок хранимого набора слов: это называется быстрое дискретное преобразование Фурье.
+	
+	Теперь пусть мы хотим делать ретроактивные Insert вида $w_i \coloneqq x$ в начальный момент времени. Понятно, что возможность такой операции равносильна решению Задачи~\ref{task:dynConv} о динамической свёртке, что не может быть сделано быстрее, чем за $\Omega \ll \sqrt{n} \rr$ на каждое изменение.
+	
+	При этом при вычислении преобразования Фурье было сделано $r = O(n \log n)$ операций. Чтобы выразить время операции через $r$, заметим, что $n = \Omega \ll r / \log r \rr$. Мы получили, что время решения задачи о динамической свёртке —
+     \begin{equation*}
+	\Omega \ll \sqrt{n} \rr = \Omega \ll \sqrt{\frac{r}{\log r}} \rr.
+     \end{equation*}
+\end{proof}
