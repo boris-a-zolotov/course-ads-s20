@@ -153,7 +153,7 @@
 \DeclarePairedDelimiter\segment{[}{]}
 \DeclarePairedDelimiter\parens{(}{)}
 
-\newcommand{\map}[2]{\set{#1 \mid #2}}
+\DeclarePairedDelimiterX{\map}[2]{\lbrace}{\rbrace}{#1 \,\delimsize\vert\,\mathopen{} #2}
 \newcommand{\BigO}{\mathcal{O}}
 \newcommand{\SmallO}{o}
 
