@@ -186,16 +186,16 @@ $$size(x) = size(p(x)) - d(p(x)).$$
             \State {$pop(S_v$)}
             \State {$pop(S_w)$}
         \EndWhile
-        \If{$S_v = S_w = \o$}
+        \If{$S_v = S_w = \varnothing$}
             \State\Return{min\{$v, w$\}}
         \EndIf
-        \If {$S_v = \o$ and $S_w\ne\o$}
+        \If {$S_v = \varnothing$ and $S_w\ne\varnothing$}
             \State\Return {min\{$v, p(top(S_w))$\}}
         \EndIf
-        \If {$S_v \ne \o$ and $S_w = \o$}
+        \If {$S_v \ne \varnothing$ and $S_w = \varnothing$}
             \State\Return {min\{$w, p(top(S_v))$\}}
         \EndIf
-        \If {$S_v \ne \o$ and $S_w\ne\o$}
+        \If {$S_v \ne \varnothing$ and $S_w\ne\varnothing$}
             \State\Return {min\{$p(top(S_v)), p(top(S_w))$\}}
         \EndIf
     \EndIf
