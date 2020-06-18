@@ -1,0 +1,75 @@
+\definecolor{oldq}{RGB}{245,90,30}
+\definecolor{newq}{RGB}{50,90,180}
+\definecolor{mostq}{RGB}{70,220,170}
+
+\begin{figure} \centering
+\tikz[scale=0.29]{
+    \foreach \t in {0,...,49} {\draw[gray,opacity=0.32] (\t,0) -- (\t,21.7);}
+    \foreach \t in {0,...,31} {\draw[gray,opacity=0.32] (0,0.7 * \t cm) -- (49,0.7 * \t cm);}
+    \draw[very thick,mostq] (33,0) -- (33,21.7);
+        \draw[thick] (0,0.7 * 31) -- (1,0.7 * 31);        \draw[oldq,very thick] (1,0.7 * 31) -- (1,0);
+        \draw[thick] (3,0.7 * 11) -- (5,0.7 * 11);        \draw[oldq,very thick] (5,0.7 * 11) -- (5,0);
+        \draw[thick] (4,0.7 * 14) -- (6,0.7 * 14);        \draw[oldq,very thick] (6,0.7 * 14) -- (6,0);
+        \draw[thick] (2,0.7 * 18) -- (7,0.7 * 18);        \draw[oldq,very thick] (7,0.7 * 18) -- (7,0);
+        \draw[thick] (8,0.7 * 1) -- (11,0.7 * 1);        \draw[oldq,very thick] (11,0.7 * 1) -- (11,0);
+        \draw[thick] (10,0.7 * 3) -- (12,0.7 * 3);        \draw[oldq,very thick] (12,0.7 * 3) -- (12,0);
+        \draw[thick] (13,0.7 * 6) -- (16,0.7 * 6);        \draw[oldq,very thick] (16,0.7 * 6) -- (16,0);
+        \draw[thick] (21,0.7 * 2) -- (24,0.7 * 2);        \draw[oldq,very thick] (24,0.7 * 2) -- (24,0);
+        \draw[thick] (18,0.7 * 7) -- (27,0.7 * 7);        \draw[oldq,very thick] (27,0.7 * 7) -- (27,0);
+        \draw[thick] (9,0.7 * 9) -- (28,0.7 * 9);        \draw[oldq,very thick] (28,0.7 * 9) -- (28,0);
+        \draw[thick] (26,0.7 * 10) -- (29,0.7 * 10);        \draw[oldq,very thick] (29,0.7 * 10) -- (29,0);
+        \draw[thick] (22,0.7 * 16) -- (31,0.7 * 16);        \draw[oldq,very thick] (31,0.7 * 16) -- (31,0);
+        \draw[thick] (17,0.7 * 22) -- (32,0.7 * 22);        \draw[oldq,very thick] (32,0.7 * 22) -- (32,0);
+        \draw[thick] (34,0.7 * 5) -- (39,0.7 * 5);        \draw[oldq,very thick] (39,0.7 * 5) -- (39,0);
+        \draw[thick] (35,0.7 * 13) -- (40,0.7 * 13);        \draw[oldq,very thick] (40,0.7 * 13) -- (40,0);
+        \draw[thick] (42,0.7 * 12) -- (44,0.7 * 12);        \draw[oldq,very thick] (44,0.7 * 12) -- (44,0);
+        \draw[thick] (41,0.7 * 15) -- (45,0.7 * 15);        \draw[oldq,very thick] (45,0.7 * 15) -- (45,0);
+        \draw[thick] (37,0.7 * 17) -- (47,0.7 * 17);        \draw[oldq,very thick] (47,0.7 * 17) -- (47,0);
+        \draw[thick] (48,0.7 * 8) -- (49,0.7 * 8);
+        \draw[thick] (38,0.7 * 19) -- (49,0.7 * 19);
+        \draw[thick] (46,0.7 * 20) -- (49,0.7 * 20);
+        \draw[thick] (36,0.7 * 21) -- (49,0.7 * 21);
+        \draw[thick] (19,0.7 * 23) -- (49,0.7 * 23);
+        \draw[thick] (23,0.7 * 24) -- (49,0.7 * 24);
+        \draw[thick] (20,0.7 * 25) -- (49,0.7 * 25);
+        \draw[thick] (43,0.7 * 26) -- (49,0.7 * 26);
+        \draw[thick] (25,0.7 * 27) -- (49,0.7 * 27);
+        \draw[thick] (30,0.7 * 28) -- (49,0.7 * 28);
+        \draw[thick] (15,0.7 * 29) -- (49,0.7 * 29);
+        \draw[thick] (33,0.7 * 30) -- (49,0.7 * 30);
+        \draw[thick] (0,0.7 * 31) -- (1,0.7 * 31);
+        \draw[thick] (3,0.7 * 11) -- (5,0.7 * 11);
+        \draw[thick] (4,0.7 * 14) -- (6,0.7 * 14);
+        \draw[thick] (2,0.7 * 18) -- (7,0.7 * 18);
+        \draw[thick] (8,0.7 * 1) -- (11,0.7 * 1);
+        \draw[thick] (10,0.7 * 3) -- (12,0.7 * 3);
+        \draw[thick] (14,0.7 * 4) -- (16,0.7 * 4);        \draw[newq,very thick] (16,0.7 * 4) -- (16,0);
+        \draw[thick] (21,0.7 * 2) -- (24,0.7 * 2);
+        \draw[thick] (13,0.7 * 6) -- (27,0.7 * 6);        \draw[newq,very thick] (27,0.7 * 6) -- (27,0);
+        \draw[thick] (18,0.7 * 7) -- (28,0.7 * 7);        \draw[newq,very thick] (28,0.7 * 7) -- (28,0);
+        \draw[thick] (9,0.7 * 9) -- (29,0.7 * 9);        \draw[newq,very thick] (29,0.7 * 9) -- (29,0);
+        \draw[thick] (26,0.7 * 10) -- (31,0.7 * 10);        \draw[newq,very thick] (31,0.7 * 10) -- (31,0);
+        \draw[thick] (22,0.7 * 16) -- (32,0.7 * 16);        \draw[newq,very thick] (32,0.7 * 16) -- (32,0);
+        \draw[thick] (34,0.7 * 5) -- (39,0.7 * 5);
+        \draw[thick] (35,0.7 * 13) -- (40,0.7 * 13);
+        \draw[thick] (42,0.7 * 12) -- (44,0.7 * 12);
+        \draw[thick] (41,0.7 * 15) -- (45,0.7 * 15);
+        \draw[thick] (37,0.7 * 17) -- (47,0.7 * 17);
+        \draw[thick] (48,0.7 * 8) -- (49,0.7 * 8);
+        \draw[thick] (38,0.7 * 19) -- (49,0.7 * 19);
+        \draw[thick] (46,0.7 * 20) -- (49,0.7 * 20);
+        \draw[thick] (36,0.7 * 21) -- (49,0.7 * 21);
+        \draw[thick] (17,0.7 * 22) -- (32,0.7 * 22);        \draw[newq,very thick] (32,0.7 * 22) -- (49,0.7 * 22);
+        \draw[thick] (19,0.7 * 23) -- (49,0.7 * 23);
+        \draw[thick] (23,0.7 * 24) -- (49,0.7 * 24);
+        \draw[thick] (20,0.7 * 25) -- (49,0.7 * 25);
+        \draw[thick] (43,0.7 * 26) -- (49,0.7 * 26);
+        \draw[thick] (25,0.7 * 27) -- (49,0.7 * 27);
+        \draw[thick] (30,0.7 * 28) -- (49,0.7 * 28);
+        \draw[thick] (15,0.7 * 29) -- (49,0.7 * 29);
+        \draw[thick] (33,0.7 * 30) -- (49,0.7 * 30);
+    \draw[->] (20,-1) -- (29,-1); \draw[->] (-1, 11 * 0.7) -- (-1,20 * 0.7);
+    \draw (24.5,-2) node{время}; \draw (-2,15.5 * 0.7) node[rotate=-90]{значения};}
+\caption{Ретроактивная очередь с приоритетами}
+\label{fig:priorityQueue}
+\end{figure}
