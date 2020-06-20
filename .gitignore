@@ -1,4 +1,9 @@
 ads-4-useful-geometric.pdf
+*.bat
+
+*.hi
+*.o
+priori*/*.exe
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

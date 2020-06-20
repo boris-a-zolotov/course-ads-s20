@@ -26,7 +26,7 @@
 \RequirePackage{tikz,tkz-euclide}
 \usetikzlibrary{arrows,backgrounds,patterns,matrix,
 	shapes,fit,calc,shadows,plotmarks,snakes}
-\usetkzobj{all}
+% \usetkzobj{all}
 
 
 %%%%%%%%%%%%%%%%%%%%
@@ -105,20 +105,20 @@
 %% Theorems and statements
 %%%%%%%%%%%%%%%%%%%%
 
-\newtheorem{exmpl}{Example}
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{stat}[theorem]{Statement}
-\newtheorem{prop}[theorem]{Proposition}
-\newtheorem{clm}[theorem]{Claim}
+\newtheorem{exmpl}{Пример}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{corollary}[theorem]{Следствие}
+\newtheorem{conjecture}[theorem]{Гипотеза}
+\newtheorem{stat}[theorem]{Утверждение}
+\newtheorem{prop}[theorem]{Предложение}
+\newtheorem{clm}[theorem]{Утверждение}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\newtheorem{task}{Problem}
+\newtheorem{definition}{Определение}
+\newtheorem{task}{Задача}
 
-\newtheorem*{remark}{Remark}
+\newtheorem*{remark}{Замечание}
 
 
 %%%%%%%%%%%%%%%%%%%%
@@ -135,6 +135,12 @@
 
 \def\tpl{«$+$»\xspace} \def\tmi{«$-$»\xspace}
 
+\newcommand{\noteauthor}[1]{\vspace{-5.5mm}
+     \begin{flushright}{\itshape Записал: #1}\end{flushright}}
+
+\newcommand{\noteauthoress}[1]{\vspace{-5.5mm}
+     \begin{flushright}{\itshape Записала: #1}\end{flushright}}
+
 
 %%%%%%%%%%%%%%%%%%%%
 %% Paired delimiters: sets, maps, etc.
@@ -147,7 +153,7 @@
 \DeclarePairedDelimiter\segment{[}{]}
 \DeclarePairedDelimiter\parens{(}{)}
 
-\newcommand{\map}[2]{\set{#1 \mid #2}}
+\DeclarePairedDelimiterX{\map}[2]{\lbrace}{\rbrace}{#1 \,\delimsize\vert\,\mathopen{} #2}
 \newcommand{\BigO}{\mathcal{O}}
 \newcommand{\SmallO}{o}
 
