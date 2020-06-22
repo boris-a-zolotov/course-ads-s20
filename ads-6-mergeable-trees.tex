@@ -313,6 +313,7 @@ $$t > parent'(t)\geqslant x > parent(t)$$
                 \EndIf
                 \State{parent(x):=parent(t)}
                 \State{\textbf{Update data structure}}
+		\State{x := t}
                 \State{swap(v, w)}
                 \State{swap($S_v, S_w$)}\Comment{конец \textbf{merge step}}
             \EndWhile
@@ -346,7 +347,7 @@ $$t > parent'(t)\geqslant x > parent(t)$$
 
 \newdefn{Finger~--- узел, посещённый в splay-дереве последний раз.}
 Мы доказывали в третей секции (теорема \ref{DynamicFingerTheorem}), что аморитизированная стоимость операций в \textbf{splay}-дереве равна $\mathcal{O}(\log{(d + 1)}),$ где $d = |f' - f|,$ а $f'$ и $f$~--- новый и старый \textbf{fingers}.
-\newdefn{$\log{d + 1}$~--- время Коула для данной операции.}
+\newdefn{$\log{(d + 1)}$~--- время Коула для данной операции.}
 У времени Коула есть одно полезное свойство:
 \begin{lemma}
 Добавление посещения узла между операциями не уменьшает время Коула.
