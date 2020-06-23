@@ -168,7 +168,7 @@ $\opt(S)$ мы не умеем искать (даже с точностью до
 	корня соответственно. Более того, в обоих получившихся многоугольниках можно естественным образом выделить новую корневую сторону, а именно, соответствующую сторону исходного треугольника. Это позволяет продолжить построение триангуляции рекурсивно (см. рисунок~\ref{triangulation_tree}).
 
 	Чтобы построить дерево по триангуляции, возьмём единственный треугольник, содержащий корневую сторону. Так мы нашли ключ, стоящий в корне дерева. Дальше запускаемся рекурсивно от частей, на которые треугольник разбил многоугольник~--- так мы получим левое и правые поддеревья корня.
-	\begin{figure}
+	\begin{figure} \centering
 		\includegraphics[height=4cm]{img/tree_and_triangulation.png}
 		\caption{Триангуляция и соответствующее ей двоичное дерево поиска.}
 		\label{triangulation_tree}
@@ -176,7 +176,7 @@ $\opt(S)$ мы не умеем искать (даже с точностью до
 
 	Ещё более интересное свойство этой биекции состоит в том, что вращения дерева поиска соответствуют операциям \textrm{flip} в триангуляции: поменять проведённую диагональ
 	в четырёхугольнике (см. рисунок~\ref{rotate_and_flip}).
-	\begin{figure}
+	\begin{figure} \centering
 		\includegraphics[width=0.4\textwidth]{img/before_rotation.png}
 		\hspace{0.1\textwidth}
 		\includegraphics[width=0.4\textwidth]{img/after_rotation.png}
@@ -297,7 +297,7 @@ $\opt(S)$ мы не умеем искать (даже с точностью до
 \begin{proof}
 	Действительно, пусть $\mathrm{succ}(P, x) < +\infty$ и $\mathrm{succ}(P, x) \notin \tau_i$, откуда $(\mathrm{succ}(P, x), j + 1), (\mathrm{succ}(P, x), j + 2), \ldots, (\mathrm{succ}(P, x), i) \notin E$. Тогда, так как $(x, i) \in E$ и $(\mathrm{succ}(P, x), j) \in E$, то в $E \setminus \set{\mathrm{succ}(P, x)}$ есть точка на стороне $(\mathrm{succ}(P, x), j)$--$(x,j)$ прямоугольника $\rect((x, i), (\mathrm{succ}(P, x), j))$. Следовательно, есть такое $y \in [x, \mathrm{succ}(P, x))$, что $(y, j) \in E$. Так как $\rho(x, i) = k < j$, то $(x, j) \notin E$, откуда $y$ лежит строго между $x$ и $\mathrm{succ}(P, x)$ (см. рисунок~\ref{proof_diagram}).
 
-	\begin{figure}
+	\begin{figure} \centering
 		\includegraphics[height=4cm]{img/lemma_proof_diagram.png}
 
 		\caption{Зелёные точки соответствуют точкам из $E$, красные отрезки~--- отрезкам, на которых точно нет точек из $E$ из-за того, что мы знаем значения
