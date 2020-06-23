@@ -1,0 +1,14 @@
+\begin{figure}[h] \centering \vspace{0.3cm}
+\tikz[scale=0.62]{
+	\foreach \r in {0,...,3} {
+	     \foreach \t in {1,...,4} {
+		\draw (2.8 * \t cm + 2.8 * \r cm - 11.2 cm, 2 * \r cm) rectangle ++(2.8,1)
+			(2.8 * \t cm + 2.8 * \r cm - 10.7 cm, 2 * \r cm + 0.5 cm) node{$\alphalph{\t}$};
+	     }
+	}
+	\draw[thick,red] (-0.1,-0.1) rectangle (1.1, 7.1);
+	\draw (-1.4,6.5) node{$A'$} (-5,4.5) node{$A' \cdot 2^{|x|+1}$};
+}
+	\caption{Сумма ведущих битов}
+	\label{fig:arinaSum}
+\end{figure}
