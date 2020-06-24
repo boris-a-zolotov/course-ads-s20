@@ -1,0 +1,25 @@
+\begin{figure}[h] \centering
+\tikz[scale=0.63]{
+     \draw (0,0) node[inner sep=0.18cm](d){$d$}
+	++(-3,-1.5) node[inner sep=0.18cm](a){$a$}
+	++(2,-1.5) node[inner sep=0.18cm](c){$c$}
+	++(-1.5,-1) node[inner sep=0.18cm](b){$b$}
+	++(3.5,-0.3) node[inner sep=0.18cm](s){ };
+     \draw[thick,specred] (d) -- (a) -- (c) -- (b);
+     \draw[decoration=snake,decorate] (c) -- ($(c)!0.82!(s)$);
+     \draw[->] ($(c)!0.82!(s)$) -- (s);
+}\hspace{1.8cm}
+\tikz[scale=0.63]{
+     \draw (0,0) node[inner sep=0.18cm](c){$c$}
+	++(-3,-1.5) node[inner sep=0.18cm](b){$b$}
+	++(-1.5,-1.5) node[inner sep=0.18cm](a){$a$}
+	++(7.5,1.5) node[inner sep=0.18cm](d){$d$}
+	++(-1.3*1.5 cm, -1.3*1.5 cm) node[inner sep=0.18cm](s){ };
+     \draw (a) -- (b) -- (c) -- (d);
+     \draw[decoration=snake,decorate] (d) -- ($(d)!0.82!(s)$);
+     \draw[->] ($(d)!0.82!(s)$) -- (s);
+}
+     \caption{Ссылки для перехода между предпочитаемыми
+	путями \\ сохраняются, когда мы из пути делаем дерево}
+     \label{fig:tangoFlyaway}
+\end{figure}
