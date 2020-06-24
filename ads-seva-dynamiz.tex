@@ -42,7 +42,7 @@ $$Q(x,D\cup D^\prime)=Q(x,D)\blacklozenge  Q(x,D^\prime),$$
 В данной задаче имеется ввиду амортизированное время для запроса и вставки.
 \end{task}
 
-Итак, давайте строить. Разбиваем наши элементы на логарифмическое количество уровней. Теперь у нас имеется $\log n $ уровней, которые называются $L_0,\ldots,L_l$: \begin{itemize}
+Итак, давайте строить. Разбиваем наши элементы на логарифмическое количество уровней. Теперь у нас имеется $\log n $ уровней, которые называются $L_0,\ldots,L_\ell$: \begin{itemize}
     \item $L_0$: $\varnothing$ или структура с $1$ элементом
 
     \item $L_1$: $\varnothing$ или структура с $2$ элементами
@@ -53,7 +53,7 @@ $$Q(x,D\cup D^\prime)=Q(x,D)\blacklozenge  Q(x,D^\prime),$$
 
     \item ...
 
-    \item $L_l$: $\varnothing$ или структура с $2^{l-1}$ элементами
+    \item $L_\ell$: $\varnothing$ или структура с $2^{\ell-1}$ элементами
 
 \end{itemize}
 
@@ -65,7 +65,7 @@ Query(x):
 
 $\quad$$a \coloneqq E$ (ответ на $\varnothing$)
 
-$\quad$for $i=0$ to $l$
+$\quad$for $i=0$ to $\ell$
 
 $\quad$$\quad$if $L_i \ne \varnothing$
 
@@ -132,21 +132,21 @@ $$\sum_{i=0}^{\log n}P\left(2^i\right)\frac{n}{2^i} =n \sum_{i=0}^{\log n}\frac{
 \hline
 Query(x):
 
-$\quad$$a_i=E$
+$\quad$$a=E$
 
-$\quad$for $i=0$ to $l$
+$\quad$for $i=0$ to $\ell$
 
-$\quad$$\quad$if $Q^1_i \ne \varnothing$
+$\quad$$\quad$if $O^1_i \ne \varnothing$
 
-$\quad$$\quad$$\quad$$a_i=a \blacklozenge Query(x,Q^1_i)$
+$\quad$$\quad$$\quad$$a \coloneqq a \blacklozenge Query(x,O^1_i)$
 
-$\quad$$\quad$if $Q^2_i \ne \varnothing$
+$\quad$$\quad$if $O^2_i \ne \varnothing$
 
-$\quad$$\quad$$\quad$$a_i=a \blacklozenge Query(x,Q^2_i)$
+$\quad$$\quad$$\quad$$a \coloneqq a \blacklozenge Query(x,O^2_i)$
 
-$\quad$$\quad$if $Q^3_i \ne \varnothing$
+$\quad$$\quad$if $O^3_i \ne \varnothing$
 
-$\quad$$\quad$$\quad$$a_i=a \blacklozenge Query(x,Q^3_i)$
+$\quad$$\quad$$\quad$$a \coloneqq a \blacklozenge Query(x,O^3_i)$
 
 $\quad$return $a$\\
 
@@ -161,7 +161,7 @@ $\quad$return $a$\\
 \hline
 Insert(x):
 
-$\quad$for $i=l \ldots 1$
+$\quad$for $i=\ell \ldots 1$
 
 $\quad$$\quad$if $O^1_{i-1} \ne \varnothing$ and $O^2_{i-1} \ne \varnothing$
 
@@ -176,16 +176,16 @@ $\quad$$\quad$$\quad$$\quad$$O^1_{i-1} \coloneqq O_{i-1}^3$
 $\quad$$\quad$$\quad$$\quad$destroy $O_{i-1}^3$
 
 
-$\quad$$\quad$$\quad$$\quad$Update(i)
+$\quad$$\quad$$\quad$$\quad$Update($i$)
 
-$\quad$$\quad$$\quad$$N_0 \coloneqq x$
+$\quad$$N_0 \coloneqq x$
 
-$\quad$$\quad$$\quad$$Update(0)$\\
+$\quad$Update($0$)\\
 
 \hline
 \end{tabular}
 
-Что такое Update(i)?
+Что такое Update($i$)?
 
 \begin{tabular}{|p{3cm}|}
 \hline
