@@ -1,0 +1,29 @@
+\begin{figure}
+	\centering
+	\begin{forest}
+		[, phantom, for children={fit=band}, s sep'+=60pt
+			[g,circle,draw
+			[p,circle,draw
+				[A,tria]
+				[x,circle,draw
+					[B,tria]
+					[C,tria]
+				]
+			]
+			[D,tria,name=left]
+		]
+		[x,circle,draw
+				[p,circle,draw,name=right
+					[A,tria]
+					[B,tria]
+				]
+				[g,circle,draw
+					[C,tria]
+					[D,tria]
+				]
+			]
+		]
+		\draw[-latex,very thick,shorten <=5mm,shorten >=5mm] (left) to (right);
+	\end{forest}
+	\caption{Zig-zag}\label{ZigZag}
+\end{figure}

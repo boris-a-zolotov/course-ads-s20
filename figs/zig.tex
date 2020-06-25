@@ -1,0 +1,23 @@
+\begin{figure}
+	\centering
+	\begin{forest}
+		[, phantom, for children={fit=band}, s sep'+=60pt
+			[p,circle,draw
+				[x,circle,draw
+					[A,tria]
+					[B,tria]
+				]
+				[C,tria,name=left]
+			]
+			[x,circle,draw
+				[A,tria,name=right]
+				[p,circle,draw
+					[B,tria]
+					[C,tria]
+				]
+			]
+		]
+		\draw[-latex,very thick,shorten <=5mm,shorten >=5mm] (left) to (right);
+	\end{forest}
+	\caption{Zig}\label{Zig}
+\end{figure}

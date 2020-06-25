@@ -1,0 +1,33 @@
+\begin{figure}
+	\centering
+	\begin{tabular}{cc}
+
+		\begin{subfigure}{0.6\textwidth}
+			\centering
+			\includegraphics[height=5cm]{img/graph_repr_example.png}
+			\caption{Геометрическое представление BST-алгоритма: жирными точками отмечены сами запросы, крестиками и плюсиком~--- другие ключи, которые мы посещаем в процессе их обработки. От плюсика можно избавиться, см. основной текст.}
+			\label{repr_example_graph}
+		\end{subfigure}
+
+		 &
+
+		\begin{subfigure}{0.4\textwidth}
+			\centering
+			\begin{subfigure}{0.4\textwidth}
+				\includegraphics[height=3cm]{img/tree_original.png}
+				\caption{Исходное дерево.}
+				\label{repr_example_orig}
+			\end{subfigure}
+
+			\begin{subfigure}{0.4\textwidth}
+				\includegraphics[height=3cm]{img/tree_rebuild.png}
+				\caption{Дерево после операции \textrm{zig(3)}.}
+				\label{repr_example_rebuild}
+			\end{subfigure}
+		\end{subfigure}
+
+		\\
+	\end{tabular}
+	\caption{Пример геометрического представления BST-алгоритма}
+	\label{repr_example}
+\end{figure}
